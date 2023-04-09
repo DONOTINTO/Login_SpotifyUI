@@ -22,17 +22,20 @@ class EntryView: UIView {
         logoImage.image = UIImage(named: "Spotify_Logo")
         
         introLabel.text = "내 마음에 꼭 드는 또 다른 플레이리스트를 발견해보세요."
+        introLabel.font = UIFont(name: "Metropolis-SemiBold", size: 27)
         introLabel.textColor = .white
         introLabel.textAlignment = .center
         introLabel.numberOfLines = 0
         
         signUpButton.setTitle("가입하기", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         signUpButton.layer.cornerRadius = 25
         signUpButton.backgroundColor = .green
         
         loginButton.setTitle("로그인하기", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
+        loginButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         loginButton.backgroundColor = .black
     }
 
