@@ -41,13 +41,13 @@ class EntryView: UIView {
 
     func makeUI() {
         logoImage.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top).offset(250)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.bottom.equalTo(introLabel.snp.top).offset(-25)
         }
         
         introLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImage.snp.bottom).offset(25)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.centerY.equalTo(self.snp.centerY)
             $0.leading.equalTo(self.snp.leading).offset(35)
             $0.trailing.equalTo(self.snp.trailing).offset(-35)
         }
