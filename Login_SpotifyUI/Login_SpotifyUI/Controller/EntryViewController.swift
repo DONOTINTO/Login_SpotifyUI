@@ -18,7 +18,6 @@ class EntryViewController: UIViewController {
     }
 
     func initialSetup() {
-        view.backgroundColor = .black
         view.addSubview(mainView)
         mainView.initialSetup()
         mainView.makeUI()
