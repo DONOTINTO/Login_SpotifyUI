@@ -30,4 +30,25 @@ class EntryView: UIView {
         loginButton.backgroundColor = .black
     }
 
+    func makeUI() {
+        logoImage.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top).offset(250)
+            $0.centerX.equalTo(self.snp.centerX)
+        }
+        
+        introLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImage.snp.bottom).offset(25)
+            $0.centerX.equalTo(self.snp.centerX)
+        }
+        
+        signUpButton.snp.makeConstraints {
+            $0.top.equalTo(introLabel.snp.bottom).offset(55)
+            $0.centerX.equalTo(self.snp.centerX)
+        }
+        
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(signUpButton.snp.bottom).offset(30)
+            $0.centerX.equalTo(self.snp.centerX)
+        }
+    }
 }
