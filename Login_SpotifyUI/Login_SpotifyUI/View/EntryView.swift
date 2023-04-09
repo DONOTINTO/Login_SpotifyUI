@@ -16,6 +16,8 @@ class EntryView: UIView {
     let loginButton = UIButton()
     
     func initialSetup() {
+        [logoImage, introLabel, signUpButton, loginButton].forEach { self.addSubview($0) }
+        
         logoImage.image = UIImage(named: "Spotify_Logo")
         
         introLabel.text = "내 마음에 꼭 드는 또 다른 플레이리스트를 발견해보세요."
