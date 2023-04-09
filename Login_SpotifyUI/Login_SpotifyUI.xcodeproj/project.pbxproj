@@ -58,13 +58,21 @@
 			children = (
 				AC30028229E2DACA0054E216 /* AppDelegate.swift */,
 				AC30028429E2DACA0054E216 /* SceneDelegate.swift */,
-				AC30028629E2DACA0054E216 /* ViewController.swift */,
+				AC4F9D0229E2E7A8005E72DC /* Controller */,
 				AC30028829E2DACA0054E216 /* Main.storyboard */,
 				AC30028B29E2DACB0054E216 /* Assets.xcassets */,
 				AC30028D29E2DACB0054E216 /* LaunchScreen.storyboard */,
 				AC30029029E2DACB0054E216 /* Info.plist */,
 			);
 			path = Login_SpotifyUI;
+			sourceTree = "<group>";
+		};
+		AC4F9D0229E2E7A8005E72DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AC30028629E2DACA0054E216 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
