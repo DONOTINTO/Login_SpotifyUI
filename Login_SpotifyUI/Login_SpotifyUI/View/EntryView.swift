@@ -17,13 +17,17 @@ class EntryView: UIView {
     
     func initialSetup() {
         [logoImage, introLabel, signUpButton, loginButton].forEach { self.addSubview($0) }
+        self.backgroundColor = .black
         
         logoImage.image = UIImage(named: "Spotify_Logo")
         
         introLabel.text = "내 마음에 꼭 드는 또 다른 플레이리스트를 발견해보세요."
         introLabel.textColor = .white
+        introLabel.textAlignment = .center
+        introLabel.numberOfLines = 0
         
         signUpButton.setTitle("가입하기", for: .normal)
+        signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.layer.cornerRadius = 25
         signUpButton.backgroundColor = .green
         
@@ -41,11 +45,16 @@ class EntryView: UIView {
         introLabel.snp.makeConstraints {
             $0.top.equalTo(logoImage.snp.bottom).offset(25)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.leading.equalTo(self.snp.leading).offset(35)
+            $0.trailing.equalTo(self.snp.trailing).offset(-35)
         }
         
         signUpButton.snp.makeConstraints {
+            $0.height.equalTo(48)
             $0.top.equalTo(introLabel.snp.bottom).offset(55)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.leading.equalTo(self.snp.leading).offset(32)
+            $0.trailing.equalTo(self.snp.trailing).offset(-32)
         }
         
         loginButton.snp.makeConstraints {
