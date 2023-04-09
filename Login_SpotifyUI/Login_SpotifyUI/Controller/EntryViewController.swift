@@ -14,6 +14,7 @@ class EntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+        makeUI()
     }
 
     func initialSetup() {
@@ -23,5 +24,10 @@ class EntryViewController: UIViewController {
         mainView.makeUI()
     }
 
+    func makeUI() {
+        mainView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
+    }
 }
 
