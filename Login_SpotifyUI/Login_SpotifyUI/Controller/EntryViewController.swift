@@ -6,16 +6,27 @@
 //
 
 import UIKit
+import SnapKit
 
 class EntryViewController: UIViewController {
+    let mainView = EntryView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        initialSetup()
+        makeUI()
     }
 
+    func initialSetup() {
+        view.addSubview(mainView)
+        mainView.initialSetup()
+        mainView.makeUI()
+    }
 
+    func makeUI() {
+        mainView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
+    }
 }
 
