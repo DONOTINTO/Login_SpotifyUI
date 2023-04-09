@@ -22,29 +22,32 @@ class EntryView: UIView {
         logoImage.image = UIImage(named: "Spotify_Logo")
         
         introLabel.text = "내 마음에 꼭 드는 또 다른 플레이리스트를 발견해보세요."
+        introLabel.font = UIFont(name: "Metropolis-SemiBold", size: 27)
         introLabel.textColor = .white
         introLabel.textAlignment = .center
         introLabel.numberOfLines = 0
         
         signUpButton.setTitle("가입하기", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         signUpButton.layer.cornerRadius = 25
-        signUpButton.backgroundColor = .green
+        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
         
         loginButton.setTitle("로그인하기", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
+        loginButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         loginButton.backgroundColor = .black
     }
 
     func makeUI() {
         logoImage.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top).offset(250)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.bottom.equalTo(introLabel.snp.top).offset(-25)
         }
         
         introLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImage.snp.bottom).offset(25)
             $0.centerX.equalTo(self.snp.centerX)
+            $0.centerY.equalTo(self.snp.centerY)
             $0.leading.equalTo(self.snp.leading).offset(35)
             $0.trailing.equalTo(self.snp.trailing).offset(-35)
         }
