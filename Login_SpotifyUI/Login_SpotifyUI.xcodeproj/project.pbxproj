@@ -64,6 +64,7 @@
 				AC30028429E2DACA0054E216 /* SceneDelegate.swift */,
 				AC4F9D0A29E2EFC5005E72DC /* Controller */,
 				AC4F9CFF29E2E727005E72DC /* View */,
+				AC4F9D0C29E2F777005E72DC /* Font */,
 				AC30028829E2DACA0054E216 /* Main.storyboard */,
 				AC30028B29E2DACB0054E216 /* Assets.xcassets */,
 				AC30028D29E2DACB0054E216 /* LaunchScreen.storyboard */,
@@ -86,6 +87,13 @@
 				AC30028629E2DACA0054E216 /* EntryViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AC4F9D0C29E2F777005E72DC /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
