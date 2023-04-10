@@ -52,21 +52,33 @@ class SignUpView: UIView {
         identificationTextField.layer.cornerRadius = 4
         identificationTextField.textColor = .white
         identificationTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
+        identificationTextField.leftView = paddingView
+        identificationTextField.leftViewMode = .always
         identificationTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         
         passwordTextField.layer.cornerRadius = 4
         passwordTextField.textColor = .white
         passwordTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        let paddingView1 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
+        passwordTextField.leftView = paddingView1
+        passwordTextField.leftViewMode = .always
         passwordTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         
         passwordCheckTextField.layer.cornerRadius = 4
         passwordCheckTextField.textColor = .white
         passwordCheckTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
+        passwordCheckTextField.leftView = paddingView2
+        passwordCheckTextField.leftViewMode = .always
         passwordCheckTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         
         phoneTextField.layer.cornerRadius = 4
         phoneTextField.textColor = .white
         phoneTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        let paddingView3 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
+        phoneTextField.leftView = paddingView3
+        phoneTextField.leftViewMode = .always
         phoneTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
         
         signUpButton.layer.cornerRadius = 25
@@ -84,6 +96,7 @@ class SignUpView: UIView {
             $0.top.equalTo(identificationLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.height.equalTo(48)
         }
         
         passwordLabel.snp.makeConstraints {
@@ -95,6 +108,7 @@ class SignUpView: UIView {
             $0.top.equalTo(passwordLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.height.equalTo(48)
         }
         
         passwordCheckLabel.snp.makeConstraints {
@@ -111,6 +125,7 @@ class SignUpView: UIView {
             $0.top.equalTo(passwordCheckLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.height.equalTo(48)
         }
         
         phoneLabel.snp.makeConstraints {
@@ -122,6 +137,7 @@ class SignUpView: UIView {
             $0.top.equalTo(phoneLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.height.equalTo(48)
         }
         
         signUpButton.snp.makeConstraints {
