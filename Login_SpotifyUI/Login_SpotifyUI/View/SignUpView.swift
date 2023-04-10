@@ -95,7 +95,7 @@ class SignUpView: UIView {
         identificationTextField.snp.makeConstraints {
             $0.top.equalTo(identificationLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
-            $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(48)
         }
         
@@ -107,7 +107,7 @@ class SignUpView: UIView {
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
-            $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(48)
         }
         
@@ -124,7 +124,7 @@ class SignUpView: UIView {
         passwordCheckTextField.snp.makeConstraints {
             $0.top.equalTo(passwordCheckLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
-            $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(48)
         }
         
@@ -136,7 +136,7 @@ class SignUpView: UIView {
         phoneTextField.snp.makeConstraints {
             $0.top.equalTo(phoneLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
-            $0.trailing.equalTo(self.snp.trailing).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(48)
         }
         
