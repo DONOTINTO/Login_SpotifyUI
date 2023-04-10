@@ -34,4 +34,63 @@ class SignUpView: UIView {
         phoneTextField.layer.cornerRadius = 4
         signUpButton.layer.cornerRadius = 25
     }
+    
+    func makeUI() {
+        [identificationLabel, identificationTextField, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, passwordErrorLabel, phoneLabel, phoneTextField, signUpButton].forEach { addSubview($0) }
+        
+        identificationLabel.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top).offset(30)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        identificationTextField.snp.makeConstraints {
+            $0.top.equalTo(identificationLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(16)
+        }
+        
+        passwordLabel.snp.makeConstraints {
+            $0.top.equalTo(identificationTextField.snp.bottom).offset(24)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(passwordLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(16)
+        }
+        
+        passwordCheckLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(24)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        passwordErrorLabel.snp.makeConstraints {
+            $0.centerY.equalTo(passwordCheckLabel.snp.centerY)
+            $0.leading.equalTo(passwordCheckLabel.snp.trailing).offset(5)
+        }
+        
+        passwordCheckTextField.snp.makeConstraints {
+            $0.top.equalTo(passwordCheckLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(16)
+        }
+        
+        phoneLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordCheckTextField.snp.bottom).offset(24)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        phoneTextField.snp.makeConstraints {
+            $0.top.equalTo(phoneLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(16)
+        }
+        
+        signUpButton.snp.makeConstraints {
+            $0.top.equalTo(phoneTextField.snp.bottom).offset(50)
+            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalTo(134)
+        }
+    }
 }
