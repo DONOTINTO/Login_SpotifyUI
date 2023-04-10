@@ -22,18 +22,53 @@ class SignUpView: UIView {
     let signUpButton = UIButton()
     
     func initialSetup() {
-        self.backgroundColor = .white
+        self.backgroundColor = .black
+        
         identificationLabel.text = "아이디 또는 이메일 주소"
+        identificationLabel.textColor = .white
+        identificationLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        
         passwordLabel.text = "비밀번호"
+        passwordLabel.textColor = .white
+        passwordLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        
+        passwordErrorLabel.text = "비밀번호를 확인해주세요."
+        passwordErrorLabel.textColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        passwordErrorLabel.font = UIFont(name: "Metropolis-SemiBold", size: 15)
+        
         passwordCheckLabel.text = "비밀번호 재입력"
+        passwordCheckLabel.textColor = .white
+        passwordCheckLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        
         phoneLabel.text = "전화번호"
+        phoneLabel.textColor = .white
+        phoneLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        
         signUpButton.setTitle("회원가입", for: .normal)
-        signUpButton.backgroundColor = .black
+        signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         
         identificationTextField.layer.cornerRadius = 4
+        identificationTextField.textColor = .white
+        identificationTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        identificationTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        
         passwordTextField.layer.cornerRadius = 4
+        passwordTextField.textColor = .white
+        passwordTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        passwordTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        
         passwordCheckTextField.layer.cornerRadius = 4
+        passwordCheckTextField.textColor = .white
+        passwordCheckTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        passwordCheckTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        
         phoneTextField.layer.cornerRadius = 4
+        phoneTextField.textColor = .white
+        phoneTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        phoneTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        
         signUpButton.layer.cornerRadius = 25
     }
     
