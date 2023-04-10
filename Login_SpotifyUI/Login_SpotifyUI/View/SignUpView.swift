@@ -22,11 +22,13 @@ class SignUpView: UIView {
     let signUpButton = UIButton()
     
     func initialSetup() {
+        self.backgroundColor = .white
         identificationLabel.text = "아이디 또는 이메일 주소"
         passwordLabel.text = "비밀번호"
         passwordCheckLabel.text = "비밀번호 재입력"
         phoneLabel.text = "전화번호"
         signUpButton.setTitle("회원가입", for: .normal)
+        signUpButton.backgroundColor = .black
         
         identificationTextField.layer.cornerRadius = 4
         passwordTextField.layer.cornerRadius = 4
@@ -91,6 +93,7 @@ class SignUpView: UIView {
             $0.top.equalTo(phoneTextField.snp.bottom).offset(50)
             $0.centerX.equalTo(self.snp.centerX)
             $0.width.equalTo(134)
+            $0.height.equalTo(49)
         }
     }
 }
