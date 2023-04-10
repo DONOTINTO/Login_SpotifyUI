@@ -21,12 +21,20 @@ class EntryViewController: UIViewController {
         view.addSubview(mainView)
         mainView.initialSetup()
         mainView.makeUI()
+        mainView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
     }
 
     func makeUI() {
         mainView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
+    }
+    
+    @objc func signUpButtonClicked() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
 }
 

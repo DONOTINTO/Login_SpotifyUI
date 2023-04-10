@@ -12,9 +12,12 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initialSetup()
     }
     
     func initialSetup() {
-        navigationController?.title = "회원가입"
+        view.backgroundColor = .black
+        self.title = "회원가입"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
 }
