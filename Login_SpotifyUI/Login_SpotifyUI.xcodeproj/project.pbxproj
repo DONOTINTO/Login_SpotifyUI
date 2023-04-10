@@ -16,6 +16,7 @@
 		AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0029E2E78A005E72DC /* EntryView.swift */; };
 		AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC4F9D0429E2E81A005E72DC /* SnapKit */; };
 		AC4F9D0E29E2FAEE005E72DC /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */; };
+		AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		AC30029029E2DACB0054E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC4F9D0029E2E78A005E72DC /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
+		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				AC30028629E2DACA0054E216 /* EntryViewController.swift */,
+				AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */,
+				AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
