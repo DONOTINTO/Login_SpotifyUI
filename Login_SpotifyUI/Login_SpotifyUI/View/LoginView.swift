@@ -44,6 +44,7 @@ class LoginView: UIView {
         
         loginButton.setTitle("로그인", for: .normal)
         loginButton.setTitleColor(.black, for: .normal)
+        loginButton.layer.cornerRadius = 25
         loginButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
         loginButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         
