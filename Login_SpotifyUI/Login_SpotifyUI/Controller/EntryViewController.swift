@@ -20,6 +20,7 @@ class EntryViewController: UIViewController {
     func initialSetup() {
         view.addSubview(entryView)
         entryView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
+        entryView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
     }
 
     func makeUI() {
@@ -33,6 +34,13 @@ class EntryViewController: UIViewController {
         backBarButtonItem.tintColor = .white
         self.navigationItem.backBarButtonItem = backBarButtonItem
         navigationController?.pushViewController(SignUpViewController(), animated: true)
+    }
+    
+    @objc func loginButtonClicked() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = .white
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.pushViewController(LoginViewController(), animated: true)
     }
 }
 
