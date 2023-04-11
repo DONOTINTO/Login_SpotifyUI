@@ -8,6 +8,12 @@
 import UIKit
 
 class LoginView: UIView {
+    let identificationLabel = UILabel()
+    let identificationTextField = UITextField()
+    let passwordLabel = UILabel()
+    let passwordTextField = UITextField()
+    let passwordHideButton = UIButton()
+    let loginButton = UIButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
