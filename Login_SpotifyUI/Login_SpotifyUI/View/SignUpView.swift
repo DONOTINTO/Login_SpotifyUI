@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class SignUpView: UIView {
-
     let identificationLabel = UILabel()
     let identificationTextField = UITextField()
     let passwordLabel = UILabel()
@@ -20,6 +19,16 @@ class SignUpView: UIView {
     let phoneLabel = UILabel()
     let phoneTextField = UITextField()
     let signUpButton = UIButton()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialSetup()
+        makeUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     func initialSetup() {
         self.backgroundColor = .black

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SignUpViewController: UIViewController {
-    let mainView = SignUpView()
+    let signUpView = SignUpView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +19,13 @@ class SignUpViewController: UIViewController {
     }
     
     func initialSetup() {
-        self.view.addSubview(mainView)
-        mainView.initialSetup()
+        self.view.addSubview(signUpView)
         self.title = "회원가입"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     func makeUI() {
-        mainView.makeUI()
-        
-        mainView.snp.makeConstraints {
+        signUpView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
     }
