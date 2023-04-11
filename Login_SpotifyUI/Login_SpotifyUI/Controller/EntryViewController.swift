@@ -19,8 +19,6 @@ class EntryViewController: UIViewController {
 
     func initialSetup() {
         view.addSubview(mainView)
-        mainView.initialSetup()
-        mainView.makeUI()
         mainView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
     }
 
