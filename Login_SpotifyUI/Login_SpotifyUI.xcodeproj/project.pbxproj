@@ -19,6 +19,7 @@
 		AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */; };
 		AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D1129E44029005E72DC /* SignUpView.swift */; };
 		AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FD29E5A70E0022A13F /* LoginViewController.swift */; };
+		AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FF29E5A7EB0022A13F /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AC4F9D1129E44029005E72DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		AC7115FD29E5A70E0022A13F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AC7115FF29E5A7EB0022A13F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				AC4F9D0029E2E78A005E72DC /* EntryView.swift */,
 				AC4F9D1129E44029005E72DC /* SignUpView.swift */,
+				AC7115FF29E5A7EB0022A13F /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */,
 				AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */,
+				AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */,
 				AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
