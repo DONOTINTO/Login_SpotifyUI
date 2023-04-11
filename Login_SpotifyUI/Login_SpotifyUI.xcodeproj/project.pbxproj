@@ -18,6 +18,7 @@
 		AC4F9D0E29E2FAEE005E72DC /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */; };
 		AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */; };
 		AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D1129E44029005E72DC /* SignUpView.swift */; };
+		AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FD29E5A70E0022A13F /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AC4F9D1129E44029005E72DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		AC7115FD29E5A70E0022A13F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				AC30028629E2DACA0054E216 /* EntryViewController.swift */,
 				AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */,
+				AC7115FD29E5A70E0022A13F /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */,
 				AC30028729E2DACA0054E216 /* EntryViewController.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
