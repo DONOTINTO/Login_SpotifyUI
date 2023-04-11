@@ -27,6 +27,8 @@ class LoginView: UIView {
     }
     
     func initialSetup() {
+        self.backgroundColor = .black
+        
         identificationLabel.text = "아이디 또는 이메일 주소"
         identificationLabel.textColor = .white
         identificationLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
