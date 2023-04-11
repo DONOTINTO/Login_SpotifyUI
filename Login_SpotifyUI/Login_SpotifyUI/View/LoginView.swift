@@ -19,6 +19,7 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialSetup()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
@@ -59,5 +60,45 @@ class LoginView: UIView {
         passwordTextField.leftView = paddingView1
         passwordTextField.leftViewMode = .always
         passwordTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+    }
+    
+    func makeUI() {
+        [identificationLabel, identificationTextField, passwordLabel, passwordTextField, passwordHideButton, loginButton].forEach { self.addSubview($0) }
+        
+        identificationLabel.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top).offset(30)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        identificationTextField.snp.makeConstraints {
+            $0.top.equalTo(identificationLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
+            $0.height.equalTo(48)
+        }
+        
+        passwordLabel.snp.makeConstraints {
+            $0.top.equalTo(identificationTextField.snp.bottom).offset(24)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(passwordLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
+            $0.height.equalTo(48)
+        }
+        
+        passwordHideButton.snp.makeConstraints {
+            $0.centerY.equalTo(passwordTextField.snp.centerY)
+            $0.trailing.equalTo(passwordTextField.snp.trailing).inset(12)
+        }
+        
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(50)
+            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalTo(134)
+            $0.height.equalTo(49)
+        }
     }
 }
