@@ -9,11 +9,21 @@ import UIKit
 import SnapKit
 
 class EntryView: UIView {
-
     let logoImage = UIImageView()
     let introLabel = UILabel()
     let signUpButton = UIButton()
     let loginButton = UIButton()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        initialSetup()
+        makeUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     func initialSetup() {
         [logoImage, introLabel, signUpButton, loginButton].forEach { self.addSubview($0) }
