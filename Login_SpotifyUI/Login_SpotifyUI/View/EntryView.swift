@@ -41,7 +41,7 @@ class EntryView: UIView {
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         signUpButton.layer.cornerRadius = 25
-        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        signUpButton.backgroundColor = UIColor(red: 30 / 255, green: 215 / 255, blue: 96 / 255, alpha: 1)
         
         loginButton.setTitle("로그인하기", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
