@@ -37,16 +37,17 @@ class EntryView: UIView {
         introLabel.textAlignment = .center
         introLabel.numberOfLines = 0
         
-        signUpButton.setTitle("가입하기", for: .normal)
-        signUpButton.setTitleColor(.black, for: .normal)
-        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
-        signUpButton.layer.cornerRadius = 25
+        buttonInit(button: signUpButton, title: "가입하기", titleColor: .black)
+        buttonInit(button: loginButton, title: "로그인하기", titleColor: .white)
         signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
-        
-        loginButton.setTitle("로그인하기", for: .normal)
-        loginButton.setTitleColor(.white, for: .normal)
-        loginButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
         loginButton.backgroundColor = .black
+    }
+    
+    func buttonInit(button: UIButton, title: String, titleColor: UIColor) {
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
+        button.layer.cornerRadius = 25
     }
 
     func makeUI() {
