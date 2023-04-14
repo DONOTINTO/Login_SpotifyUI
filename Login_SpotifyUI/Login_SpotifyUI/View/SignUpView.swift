@@ -33,25 +33,11 @@ class SignUpView: UIView {
     func initialSetup() {
         self.backgroundColor = .black
         
-        identificationLabel.text = "아이디 또는 이메일 주소"
-        identificationLabel.textColor = .white
-        identificationLabel.font = ProjFont.metro25
-        
-        passwordLabel.text = "비밀번호"
-        passwordLabel.textColor = .white
-        passwordLabel.font = ProjFont.metro25
-        
-        passwordErrorLabel.text = "비밀번호를 확인해주세요."
-        passwordErrorLabel.textColor = ProjColor.green
-        passwordErrorLabel.font = ProjFont.metro15
-        
-        passwordCheckLabel.text = "비밀번호 재입력"
-        passwordCheckLabel.textColor = .white
-        passwordCheckLabel.font = ProjFont.metro25
-        
-        phoneLabel.text = "전화번호"
-        phoneLabel.textColor = .white
-        phoneLabel.font = ProjFont.metro25
+        labelInit(identificationLabel, title: "아이디 또는 이메일 주소", textColor: .white, font: ProjFont.metro25!)
+        labelInit(passwordLabel, title: "비밀번호", textColor: .white, font: ProjFont.metro25!)
+        labelInit(passwordErrorLabel, title: "비밀번호를 확인해주세요.", textColor: ProjColor.green, font: ProjFont.metro15!)
+        labelInit(passwordCheckLabel, title: "비밀번호 재입력", textColor: .white, font: ProjFont.metro25!)
+        labelInit(phoneLabel, title: "전화번호", textColor: .white, font: ProjFont.metro25!)
         
         signUpButton.setTitle("회원가입", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
@@ -64,6 +50,12 @@ class SignUpView: UIView {
         textFieldInit(phoneTextField)
         
         signUpButton.layer.cornerRadius = 25
+    }
+    
+    func labelInit(_ label: UILabel, title: String, textColor: UIColor, font: UIFont) {
+        label.text = title
+        label.textColor = textColor
+        label.font = font
     }
     
     func textFieldInit(_ textField: UITextField) {
