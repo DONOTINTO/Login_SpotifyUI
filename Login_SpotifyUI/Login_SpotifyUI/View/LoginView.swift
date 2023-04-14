@@ -45,7 +45,7 @@ class LoginView: UIView {
         loginButton.setTitle("로그인", for: .normal)
         loginButton.setTitleColor(.black, for: .normal)
         loginButton.layer.cornerRadius = 25
-        loginButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        loginButton.backgroundColor = ProjColor.green
         loginButton.titleLabel?.font = ProjFont.metro16
         
         identificationTextField.layer.cornerRadius = 4
@@ -54,7 +54,7 @@ class LoginView: UIView {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         identificationTextField.leftView = paddingView
         identificationTextField.leftViewMode = .always
-        identificationTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        identificationTextField.backgroundColor = ProjColor.lightGray
         
         passwordTextField.layer.cornerRadius = 4
         passwordTextField.textColor = .white
@@ -62,7 +62,7 @@ class LoginView: UIView {
         let paddingView1 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         passwordTextField.leftView = paddingView1
         passwordTextField.leftViewMode = .always
-        passwordTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        passwordTextField.backgroundColor = ProjColor.lightGray
     }
     
     func makeUI() {

@@ -39,7 +39,7 @@ class EntryView: UIView {
         
         buttonInit(button: signUpButton, title: "가입하기", titleColor: .black)
         buttonInit(button: loginButton, title: "로그인하기", titleColor: .white)
-        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        signUpButton.backgroundColor = ProjColor.green
         loginButton.backgroundColor = .black
     }
     

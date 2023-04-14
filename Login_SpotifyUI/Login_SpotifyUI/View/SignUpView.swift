@@ -42,7 +42,7 @@ class SignUpView: UIView {
         passwordLabel.font = ProjFont.metro25
         
         passwordErrorLabel.text = "비밀번호를 확인해주세요."
-        passwordErrorLabel.textColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        passwordErrorLabel.textColor = ProjColor.green
         passwordErrorLabel.font = ProjFont.metro15
         
         passwordCheckLabel.text = "비밀번호 재입력"
@@ -55,7 +55,7 @@ class SignUpView: UIView {
         
         signUpButton.setTitle("회원가입", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
-        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
+        signUpButton.backgroundColor = ProjColor.green
         signUpButton.titleLabel?.font = ProjFont.metro16
         
         textFieldInit(identificationTextField)
@@ -73,7 +73,7 @@ class SignUpView: UIView {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = .always
-        textField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        textField.backgroundColor = ProjColor.lightGray
     }
     
     func makeUI() {
