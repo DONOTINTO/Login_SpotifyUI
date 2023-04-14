@@ -15,6 +15,7 @@
 		AC30028F29E2DACB0054E216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC30028D29E2DACB0054E216 /* LaunchScreen.storyboard */; };
 		AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40629E955D900CD49B7 /* ProjFont.swift */; };
 		AC33C40929E9577300CD49B7 /* ProjColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40829E9577300CD49B7 /* ProjColor.swift */; };
+		AC33C40B29E95AD900CD49B7 /* ProjImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40A29E95AD900CD49B7 /* ProjImage.swift */; };
 		AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0029E2E78A005E72DC /* EntryView.swift */; };
 		AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC4F9D0429E2E81A005E72DC /* SnapKit */; };
 		AC4F9D0E29E2FAEE005E72DC /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */; };
@@ -35,6 +36,7 @@
 		AC30029029E2DACB0054E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC33C40629E955D900CD49B7 /* ProjFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjFont.swift; sourceTree = "<group>"; };
 		AC33C40829E9577300CD49B7 /* ProjColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjColor.swift; sourceTree = "<group>"; };
+		AC33C40A29E95AD900CD49B7 /* ProjImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjImage.swift; sourceTree = "<group>"; };
 		AC4F9D0029E2E78A005E72DC /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				AC33C40629E955D900CD49B7 /* ProjFont.swift */,
 				AC33C40829E9577300CD49B7 /* ProjColor.swift */,
+				AC33C40A29E95AD900CD49B7 /* ProjImage.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */,
 				AC30028729E2DACA0054E216 /* EntryViewController.swift in Sources */,
+				AC33C40B29E95AD900CD49B7 /* ProjImage.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
