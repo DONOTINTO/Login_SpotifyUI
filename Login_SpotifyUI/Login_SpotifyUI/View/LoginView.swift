@@ -48,21 +48,18 @@ class LoginView: UIView {
         loginButton.backgroundColor = ProjColor.green
         loginButton.titleLabel?.font = ProjFont.metro16
         
-        identificationTextField.layer.cornerRadius = 4
-        identificationTextField.textColor = .white
-        identificationTextField.font = ProjFont.metro22
+        textFieldInit(identificationTextField)
+        textFieldInit(passwordTextField)
+    }
+    
+    func textFieldInit(_ textfield: UITextField) {
+        textfield.layer.cornerRadius = 4
+        textfield.textColor = .white
+        textfield.font = ProjFont.metro22
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        identificationTextField.leftView = paddingView
-        identificationTextField.leftViewMode = .always
-        identificationTextField.backgroundColor = ProjColor.lightGray
-        
-        passwordTextField.layer.cornerRadius = 4
-        passwordTextField.textColor = .white
-        passwordTextField.font = ProjFont.metro22
-        let paddingView1 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        passwordTextField.leftView = paddingView1
-        passwordTextField.leftViewMode = .always
-        passwordTextField.backgroundColor = ProjColor.lightGray
+        textfield.leftView = paddingView
+        textfield.leftViewMode = .always
+        textfield.backgroundColor = ProjColor.lightGray
     }
     
     func makeUI() {
