@@ -32,7 +32,7 @@ class EntryView: UIView {
         logoImage.image = UIImage(named: "Spotify_Logo")
         
         introLabel.text = "내 마음에 꼭 드는 또 다른 플레이리스트를 발견해보세요."
-        introLabel.font = UIFont(name: "Metropolis-SemiBold", size: 27)
+        introLabel.font = ProjFont.metro27
         introLabel.textColor = .white
         introLabel.textAlignment = .center
         introLabel.numberOfLines = 0
@@ -46,7 +46,7 @@ class EntryView: UIView {
     func buttonInit(button: UIButton, title: String, titleColor: UIColor) {
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
+        button.titleLabel?.font = ProjFont.metro16
         button.layer.cornerRadius = 25
     }
 
