@@ -35,28 +35,28 @@ class SignUpView: UIView {
         
         identificationLabel.text = "아이디 또는 이메일 주소"
         identificationLabel.textColor = .white
-        identificationLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        identificationLabel.font = ProjFont.metro25
         
         passwordLabel.text = "비밀번호"
         passwordLabel.textColor = .white
-        passwordLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        passwordLabel.font = ProjFont.metro25
         
         passwordErrorLabel.text = "비밀번호를 확인해주세요."
         passwordErrorLabel.textColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
-        passwordErrorLabel.font = UIFont(name: "Metropolis-SemiBold", size: 15)
+        passwordErrorLabel.font = ProjFont.metro15
         
         passwordCheckLabel.text = "비밀번호 재입력"
         passwordCheckLabel.textColor = .white
-        passwordCheckLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        passwordCheckLabel.font = ProjFont.metro25
         
         phoneLabel.text = "전화번호"
         phoneLabel.textColor = .white
-        phoneLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        phoneLabel.font = ProjFont.metro25
         
         signUpButton.setTitle("회원가입", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
-        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
+        signUpButton.titleLabel?.font = ProjFont.metro16
         
         textFieldInit(identificationTextField)
         textFieldInit(passwordTextField)
@@ -69,7 +69,7 @@ class SignUpView: UIView {
     func textFieldInit(_ textField: UITextField) {
         textField.layer.cornerRadius = 4
         textField.textColor = .white
-        textField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
+        textField.font = ProjFont.metro22
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = .always
