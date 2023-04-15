@@ -33,11 +33,11 @@ class SignUpView: UIView {
     func initialSetup() {
         self.backgroundColor = .black
         
-        labelInit(identificationLabel, title: "아이디 또는 이메일 주소", textColor: .white, font: ProjFont.metro25!)
-        labelInit(passwordLabel, title: "비밀번호", textColor: .white, font: ProjFont.metro25!)
-        labelInit(passwordErrorLabel, title: "비밀번호를 확인해주세요.", textColor: ProjColor.green, font: ProjFont.metro15!)
-        labelInit(passwordCheckLabel, title: "비밀번호 재입력", textColor: .white, font: ProjFont.metro25!)
-        labelInit(phoneLabel, title: "전화번호", textColor: .white, font: ProjFont.metro25!)
+        labelInit(identificationLabel, title: "아이디 또는 이메일 주소", textColor: .white, font: ProjFont.metro25)
+        labelInit(passwordLabel, title: "비밀번호", textColor: .white, font: ProjFont.metro25)
+        labelInit(passwordErrorLabel, title: "비밀번호를 확인해주세요.", textColor: ProjColor.green, font: ProjFont.metro15)
+        labelInit(passwordCheckLabel, title: "비밀번호 재입력", textColor: .white, font: ProjFont.metro25)
+        labelInit(phoneLabel, title: "전화번호", textColor: .white, font: ProjFont.metro25)
         
         signUpButton.setTitle("회원가입", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
