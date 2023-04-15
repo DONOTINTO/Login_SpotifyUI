@@ -17,7 +17,6 @@ class SuccessAlertView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .black
         initialSetup()
         makeUI()
     }
@@ -27,6 +26,12 @@ class SuccessAlertView: UIView {
     }
     
     func initialSetup() {
+        [logoImage, welcomeLabel, confirmButton].forEach { self.addSubview($0) }
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 30
+        self.layer.borderColor = ProjColor.green.cgColor
+        self.layer.borderWidth = 1
+        
         logoImage.image = UIImage(named: "CI")
         
         welcomeLabel.text = "회원가입이 완료되었습니다!"
@@ -36,16 +41,10 @@ class SuccessAlertView: UIView {
         confirmButton.setTitle("확인", for: .normal)
         confirmButton.setTitleColor(.black, for: .normal)
         confirmButton.backgroundColor = ProjColor.green
+        confirmButton.layer.cornerRadius = 25
     }
  
     func makeUI() {
-        self.snp.makeConstraints {
-            $0.height.equalToSuperview().dividedBy(3)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.centerX.centerY.equalToSuperview()
-        }
-        
         logoImage.snp.makeConstraints {
             $0.top.equalTo(self.snp.top).offset(39)
             $0.centerX.equalTo(self.snp.centerX)
@@ -60,6 +59,7 @@ class SuccessAlertView: UIView {
             $0.height.equalTo(49)
             $0.width.equalTo(134)
             $0.top.equalTo(welcomeLabel.snp.bottom).offset(39)
+            $0.bottom.equalTo(self.snp.bottom).offset(-39)
             $0.centerX.equalTo(self.snp.centerX)
         }
     }
