@@ -20,7 +20,9 @@ class SignUpViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(signUpView)
-        self.title = "회원가입"
+        navigationController?.topViewController?.title = "회원가입"
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     

@@ -19,7 +19,9 @@ class LoginViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(loginView)
-        self.title = "로그인하기"
+        navigationController?.topViewController?.title = "로그인하기"
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     

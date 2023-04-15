@@ -33,64 +33,39 @@ class SignUpView: UIView {
     func initialSetup() {
         self.backgroundColor = .black
         
-        identificationLabel.text = "아이디 또는 이메일 주소"
-        identificationLabel.textColor = .white
-        identificationLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
-        
-        passwordLabel.text = "비밀번호"
-        passwordLabel.textColor = .white
-        passwordLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
-        
-        passwordErrorLabel.text = "비밀번호를 확인해주세요."
-        passwordErrorLabel.textColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
-        passwordErrorLabel.font = UIFont(name: "Metropolis-SemiBold", size: 15)
-        
-        passwordCheckLabel.text = "비밀번호 재입력"
-        passwordCheckLabel.textColor = .white
-        passwordCheckLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
-        
-        phoneLabel.text = "전화번호"
-        phoneLabel.textColor = .white
-        phoneLabel.font = UIFont(name: "Metropolis-SemiBold", size: 25)
+        labelInit(identificationLabel, title: "아이디 또는 이메일 주소", textColor: .white, font: ProjFont.metro25)
+        labelInit(passwordLabel, title: "비밀번호", textColor: .white, font: ProjFont.metro25)
+        labelInit(passwordErrorLabel, title: "비밀번호를 확인해주세요.", textColor: ProjColor.green, font: ProjFont.metro15)
+        labelInit(passwordCheckLabel, title: "비밀번호 재입력", textColor: .white, font: ProjFont.metro25)
+        labelInit(phoneLabel, title: "전화번호", textColor: .white, font: ProjFont.metro25)
         
         signUpButton.setTitle("회원가입", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
-        signUpButton.backgroundColor = UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)
-        signUpButton.titleLabel?.font = UIFont(name: "Metropolis-SemiBold", size: 16)
+        signUpButton.backgroundColor = ProjColor.green
+        signUpButton.titleLabel?.font = ProjFont.metro16
         
-        identificationTextField.layer.cornerRadius = 4
-        identificationTextField.textColor = .white
-        identificationTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        identificationTextField.leftView = paddingView
-        identificationTextField.leftViewMode = .always
-        identificationTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
-        
-        passwordTextField.layer.cornerRadius = 4
-        passwordTextField.textColor = .white
-        passwordTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
-        let paddingView1 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        passwordTextField.leftView = paddingView1
-        passwordTextField.leftViewMode = .always
-        passwordTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
-        
-        passwordCheckTextField.layer.cornerRadius = 4
-        passwordCheckTextField.textColor = .white
-        passwordCheckTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
-        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        passwordCheckTextField.leftView = paddingView2
-        passwordCheckTextField.leftViewMode = .always
-        passwordCheckTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
-        
-        phoneTextField.layer.cornerRadius = 4
-        phoneTextField.textColor = .white
-        phoneTextField.font = UIFont(name: "Metropolis-SemiBold", size: 22)
-        let paddingView3 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
-        phoneTextField.leftView = paddingView3
-        phoneTextField.leftViewMode = .always
-        phoneTextField.backgroundColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
+        textFieldInit(identificationTextField)
+        textFieldInit(passwordTextField)
+        textFieldInit(passwordCheckTextField)
+        textFieldInit(phoneTextField)
         
         signUpButton.layer.cornerRadius = 25
+    }
+    
+    func labelInit(_ label: UILabel, title: String, textColor: UIColor, font: UIFont) {
+        label.text = title
+        label.textColor = textColor
+        label.font = font
+    }
+    
+    func textFieldInit(_ textField: UITextField) {
+        textField.layer.cornerRadius = 4
+        textField.textColor = .white
+        textField.font = ProjFont.metro22
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+        textField.backgroundColor = ProjColor.lightGray
     }
     
     func makeUI() {
