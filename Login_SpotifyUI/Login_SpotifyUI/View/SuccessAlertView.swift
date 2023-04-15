@@ -16,10 +16,26 @@ class SuccessAlertView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = .black
+        initialSetup()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func initialSetup() {
+        logoImage.image = UIImage(named: "CI")
+        
+        welcomeLabel.text = "회원가입이 완료되었습니다!"
+        welcomeLabel.font = ProjFont.metro25
+        welcomeLabel.textColor = .white
+        
+        confirmButton.setTitle("확인", for: .normal)
+        confirmButton.setTitleColor(.black, for: .normal)
+        confirmButton.backgroundColor = ProjColor.green
     }
  
     func makeUI() {
