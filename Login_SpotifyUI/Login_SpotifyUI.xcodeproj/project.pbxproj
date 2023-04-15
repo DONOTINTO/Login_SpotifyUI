@@ -16,6 +16,8 @@
 		AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40629E955D900CD49B7 /* ProjFont.swift */; };
 		AC33C40929E9577300CD49B7 /* ProjColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40829E9577300CD49B7 /* ProjColor.swift */; };
 		AC33C40B29E95AD900CD49B7 /* ProjImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40A29E95AD900CD49B7 /* ProjImage.swift */; };
+		AC33C40E29EA4FAF00CD49B7 /* SuccessAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40D29EA4FAF00CD49B7 /* SuccessAlertViewController.swift */; };
+		AC33C41029EA527800CD49B7 /* SuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */; };
 		AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0029E2E78A005E72DC /* EntryView.swift */; };
 		AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC4F9D0429E2E81A005E72DC /* SnapKit */; };
 		AC4F9D0E29E2FAEE005E72DC /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */; };
@@ -37,6 +39,8 @@
 		AC33C40629E955D900CD49B7 /* ProjFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjFont.swift; sourceTree = "<group>"; };
 		AC33C40829E9577300CD49B7 /* ProjColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjColor.swift; sourceTree = "<group>"; };
 		AC33C40A29E95AD900CD49B7 /* ProjImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjImage.swift; sourceTree = "<group>"; };
+		AC33C40D29EA4FAF00CD49B7 /* SuccessAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAlertViewController.swift; sourceTree = "<group>"; };
+		AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAlertView.swift; sourceTree = "<group>"; };
 		AC4F9D0029E2E78A005E72DC /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				AC4F9D0029E2E78A005E72DC /* EntryView.swift */,
 				AC4F9D1129E44029005E72DC /* SignUpView.swift */,
 				AC7115FF29E5A7EB0022A13F /* LoginView.swift */,
+				AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				AC30028629E2DACA0054E216 /* EntryViewController.swift */,
 				AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */,
 				AC7115FD29E5A70E0022A13F /* LoginViewController.swift */,
+				AC33C40D29EA4FAF00CD49B7 /* SuccessAlertViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,9 +215,11 @@
 				AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */,
 				AC30028729E2DACA0054E216 /* EntryViewController.swift in Sources */,
 				AC33C40B29E95AD900CD49B7 /* ProjImage.swift in Sources */,
+				AC33C41029EA527800CD49B7 /* SuccessAlertView.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
+				AC33C40E29EA4FAF00CD49B7 /* SuccessAlertViewController.swift in Sources */,
 				AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */,
 				AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */,
 				AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */,
