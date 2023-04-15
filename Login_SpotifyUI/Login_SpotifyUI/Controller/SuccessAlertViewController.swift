@@ -18,7 +18,7 @@ class SuccessAlertViewController: UIViewController {
         makeUI()
     }
     
-    func initialSetup(){
+    func initialSetup() {
         view.addSubview(successAlertView)
     }
     
