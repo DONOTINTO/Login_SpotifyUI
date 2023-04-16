@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0C29EBB9A4001D0B91 /* Register.swift */; };
+		AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */; };
 		AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028229E2DACA0054E216 /* AppDelegate.swift */; };
 		AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028429E2DACA0054E216 /* SceneDelegate.swift */; };
 		AC30028729E2DACA0054E216 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028629E2DACA0054E216 /* EntryViewController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		AC2C7F0C29EBB9A4001D0B91 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
 		AC30027F29E2DACA0054E216 /* Login_SpotifyUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login_SpotifyUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC30028229E2DACA0054E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC30028429E2DACA0054E216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				AC2C7F0C29EBB9A4001D0B91 /* Register.swift */,
+				AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				AC33C40B29E95AD900CD49B7 /* ProjImage.swift in Sources */,
 				AC33C41029EA527800CD49B7 /* SuccessAlertView.swift in Sources */,
 				AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */,
+				AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
