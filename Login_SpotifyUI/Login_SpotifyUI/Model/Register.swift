@@ -12,11 +12,4 @@ struct Register {
     let password: String
     let phone: String
     let keyNumber: Int
-    
-    init(identification: String, password: String, phone: String, keyNumber: Int) {
-        self.identification = identification
-        self.password = password
-        self.phone = phone
-        self.keyNumber = keyNumber
-    }
 }
