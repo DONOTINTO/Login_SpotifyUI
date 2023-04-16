@@ -8,8 +8,8 @@
 import UIKit
 
 struct Register {
-    let identification: String
-    let password: String
-    let phone: String
-    let keyNumber: Int
+    var identification: String
+    var password: String
+    var phone: String
+    var keyNumber: Int
 }
