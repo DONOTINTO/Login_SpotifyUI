@@ -9,7 +9,7 @@ import UIKit
 
 struct Register {
     let identification: String
-    let password: String
+    var password: String
     let phone: String
     let keyNumber: Int
 }
