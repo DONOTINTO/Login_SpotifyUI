@@ -12,20 +12,18 @@ class RegisterManager {
     static let shared = RegisterManager()
     
     var registerList: [Register] = []
+    let count = RegisterManager.shared.registerList.count
     
     func append(_ register: Register) {
         registerList.append(register)
     }
     
     func remove(key: Int) {
-        for register in registerList {
-            var idx = 0
-            
-            if register.keyNumber == key {
+        for idx in 0 ..< self.count {
+            if registerList[idx].keyNumber == key {
                 registerList.remove(at: idx)
                 break
             }
-            idx += 1
         }
     }
     
@@ -39,15 +37,11 @@ class RegisterManager {
     }
     
     func updatePassword(key: Int, password: String) {
-        for register in registerList {
-            var idx = 0
-            
-            if register.keyNumber == key {
-                //register가 let인 이유를 모르겠음
-                register.password = password
+        for idx in 0 ..< self.count {
+            if registerList[idx].keyNumber == key {
+                registerList[idx].password = password
                 break
             }
-            idx += 1
         }
     }
 }
