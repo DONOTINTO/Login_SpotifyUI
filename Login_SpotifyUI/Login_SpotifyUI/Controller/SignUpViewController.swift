@@ -20,6 +20,9 @@ class SignUpViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(signUpView)
+        
+        signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
+        
         navigationController?.topViewController?.title = "회원가입"
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .white
@@ -30,5 +33,31 @@ class SignUpViewController: UIViewController {
         signUpView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
+    }
+    
+    func makeRandomKey() -> Int {
+        let key = Int.random(in: 1 ... 99999)
+        return key
+    }
+    
+    @objc func signUpButtonClicked() {
+        guard let identification = signUpView.identificationTextField.text else { return }
+        guard let password = signUpView.passwordTextField.text else { return }
+        guard let phone = signUpView.phoneTextField.text else { return }
+        if identification == "" || password == "" || phone == "" { return }
+        
+        let keyNumber = makeRandomKey()
+        let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
+        print(register.identification)
+        print(register.password)
+        print(register.phone)
+        print(register.keyNumber)
+        
+        RegisterManager.shared.registerList.append(register)
+
+        let alertVC = SuccessAlertViewController()
+        alertVC.modalPresentationStyle = .overCurrentContext
+        
+        present(alertVC, animated: true)
     }
 }

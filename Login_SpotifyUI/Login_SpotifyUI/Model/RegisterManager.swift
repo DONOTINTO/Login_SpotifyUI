@@ -12,14 +12,14 @@ class RegisterManager {
     static let shared = RegisterManager()
     
     var registerList: [Register] = []
-    let count = RegisterManager.shared.registerList.count
     
     func append(_ register: Register) {
         registerList.append(register)
     }
     
     func remove(key: Int) {
-        for idx in 0 ..< self.count {
+        var count = registerList.count
+        for idx in 0 ..< count {
             if registerList[idx].keyNumber == key {
                 registerList.remove(at: idx)
                 break
@@ -37,7 +37,8 @@ class RegisterManager {
     }
     
     func updatePassword(key: Int, password: String) {
-        for idx in 0 ..< self.count {
+        var count = registerList.count
+        for idx in 0 ..< count {
             if registerList[idx].keyNumber == key {
                 registerList[idx].password = password
                 break
