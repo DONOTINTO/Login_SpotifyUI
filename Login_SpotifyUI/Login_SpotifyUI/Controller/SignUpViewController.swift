@@ -41,10 +41,18 @@ class SignUpViewController: UIViewController {
     }
     
     func isAvailableID(_ id: String) -> Bool {
-        if id == "" { return false }
-        let id = RegisterManager.shared.registerList.filter { $0.identification == id }
+        let duplicationID = RegisterManager.shared.registerList.filter { $0.identification == id }
         
-        return id.isEmpty
+        if id == "" {
+            signUpView.identificationTextField.placeholder = "아이디를 입력해주세요."
+            return false
+        } else if !duplicationID.isEmpty {
+            signUpView.identificationTextField.placeholder = "중복된 아이디입니다."
+        } else {
+            signUpView.identificationTextField.placeholder = ""
+        }
+        
+        return duplicationID.isEmpty
     }
     
     @objc func signUpButtonClicked() {
