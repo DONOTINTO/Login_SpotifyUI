@@ -130,7 +130,6 @@ class SignUpViewController: UIViewController {
 
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
-        // navigationController?.popViewController(animated: true)
         present(alertVC, animated: true)
     }
 }
