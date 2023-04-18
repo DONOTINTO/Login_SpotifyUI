@@ -44,6 +44,7 @@ class SignUpView: UIView {
         signUpButton.titleLabel?.font = ProjFont.metro16
         
         textFieldInit(identificationTextField)
+        identificationTextField.keyboardType = .emailAddress
         textFieldInit(passwordTextField)
         textFieldInit(passwordCheckTextField)
         textFieldInit(phoneTextField)
