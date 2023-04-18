@@ -106,7 +106,9 @@ class SignUpViewController: UIViewController {
         return true
     }
     
-    @objc func signUpButtonClicked() {
+    @objc func signUpButtonClicked(sender: UIButton) {
+        animateView(viewToAnimate: sender)
+        
         guard let identification = signUpView.identificationTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let passwordCheck = signUpView.passwordCheckTextField.text else { return }
