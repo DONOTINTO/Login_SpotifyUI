@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController {
     func isAvailableID(_ id: String) -> Bool {
         let duplicationID = RegisterManager.shared.registerList.filter { $0.identification == id }
         
-        if id == "" {
+        if id.isEmpty {
             signUpView.identificationTextField.placeholder = "아이디를 입력해주세요."
             return false
         } else if !duplicationID.isEmpty {

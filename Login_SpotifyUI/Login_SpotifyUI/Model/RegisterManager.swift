@@ -18,7 +18,7 @@ class RegisterManager {
     }
     
     func remove(key: Int) {
-        var count = registerList.count
+        let count = registerList.count
         for idx in 0 ..< count {
             if registerList[idx].keyNumber == key {
                 registerList.remove(at: idx)
@@ -37,7 +37,7 @@ class RegisterManager {
     }
     
     func updatePassword(key: Int, password: String) {
-        var count = registerList.count
+        let count = registerList.count
         for idx in 0 ..< count {
             if registerList[idx].keyNumber == key {
                 registerList[idx].password = password
