@@ -35,23 +35,13 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    func makeRandomKey() -> Int {
-        let key = Int.random(in: 1 ... 99999)
-        return key
-    }
-    
     @objc func signUpButtonClicked() {
         guard let identification = signUpView.identificationTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
-        if identification == "" || password == "" || phone == "" { return }
+        if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let keyNumber = makeRandomKey()
-        let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
-        print(register.identification)
-        print(register.password)
-        print(register.phone)
-        print(register.keyNumber)
+        let register = Register(identification: identification, password: password, phone: phone)
         
         RegisterManager.shared.registerList.append(register)
 

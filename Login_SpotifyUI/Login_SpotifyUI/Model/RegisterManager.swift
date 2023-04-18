@@ -18,12 +18,8 @@ class RegisterManager {
     }
     
     func remove(key: Int) {
-        var count = registerList.count
-        for idx in 0 ..< count {
-            if registerList[idx].keyNumber == key {
-                registerList.remove(at: idx)
-                break
-            }
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
+            registerList.remove(at: index)
         }
     }
     
@@ -37,12 +33,8 @@ class RegisterManager {
     }
     
     func updatePassword(key: Int, password: String) {
-        var count = registerList.count
-        for idx in 0 ..< count {
-            if registerList[idx].keyNumber == key {
-                registerList[idx].password = password
-                break
-            }
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key}) {
+            registerList[index].password = password
         }
-    }
+     }
 }
