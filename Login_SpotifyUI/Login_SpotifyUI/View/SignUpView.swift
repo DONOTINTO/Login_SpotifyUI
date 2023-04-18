@@ -46,6 +46,7 @@ class SignUpView: UIView {
         textFieldInit(identificationTextField)
         identificationTextField.keyboardType = .emailAddress
         textFieldInit(passwordTextField)
+        passwordTextField.placeholder = "대소문자 및 특수문자가 포함되어야 합니다."
         textFieldInit(passwordCheckTextField)
         textFieldInit(phoneTextField)
         
