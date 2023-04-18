@@ -11,5 +11,5 @@ struct Register {
     var identification: String
     var password: String
     var phone: String
-    var keyNumber: Int
+    var keyNumber = Int.random(in: 1...999999)
 }

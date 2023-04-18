@@ -35,11 +35,6 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    func makeRandomKey() -> Int {
-        let key = Int.random(in: 1 ... 99999)
-        return key
-    }
-    
     func isAvailableID(_ id: String) -> Bool {
         let duplicationID = RegisterManager.shared.registerList.filter { $0.identification == id }
         
@@ -115,16 +110,16 @@ class SignUpViewController: UIViewController {
         guard let phone = signUpView.phoneTextField.text else { return }
         
         signUpView.identificationTextField.placeholder = ""
-        signUpView.passwordTextField.placeholder = "대소문자 및 특수문자가 포함되어야 합니다."
+        signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         signUpView.phoneTextField.placeholder = ""
 
         if !isAvailableID(identification) { return }
         if !isAvailablePassword(password, passwordCheck) { return }
         if !isAvailablePhone(phone) { return }
+        if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let keyNumber = makeRandomKey()
-        let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
+        let register = Register(identification: identification, password: password, phone: phone)
         
         RegisterManager.shared.registerList.append(register)
 
