@@ -55,12 +55,47 @@ class SignUpViewController: UIViewController {
         return duplicationID.isEmpty
     }
     
+    func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
+        /// 특수문자 캐릭터셋
+        let punctuationCharacterSet = CharacterSet.punctuationCharacters
+        let upperChar = password.filter { $0.isUppercase }
+        let lowerChar = password.filter { $0.isLowercase}
+        
+        if password.isEmpty {
+            signUpView.passwordTextField.placeholder = "비밀번호를 입력해주세요."
+            signUpView.passwordCheckTextField.placeholder = ""
+            return false
+        } else if passwordCheck.isEmpty {
+            signUpView.passwordTextField.placeholder = ""
+            signUpView.passwordCheckTextField.placeholder = "비밀번호를 재입력해주세요."
+            return false
+        } else if password != passwordCheck {
+            signUpView.passwordTextField.placeholder = "입력한 비밀번호가 일치하지 않습니다."
+            signUpView.passwordCheckTextField.placeholder = ""
+            return false
+        } else if password.rangeOfCharacter(from: punctuationCharacterSet) == nil {
+            signUpView.passwordTextField.placeholder = "특수문자가 포함되어야 합니다."
+            signUpView.passwordCheckTextField.placeholder = ""
+            return false
+        } else if upperChar.isEmpty || lowerChar.isEmpty {
+            signUpView.passwordTextField.placeholder = "대소문자가 포함되어야 합니다."
+            signUpView.passwordCheckTextField.placeholder = ""
+            return false
+        }
+        
+        signUpView.passwordTextField.placeholder = ""
+        signUpView.passwordCheckTextField.placeholder = ""
+        return true
+    }
+    
     @objc func signUpButtonClicked() {
         guard let identification = signUpView.identificationTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
+        guard let passwordCheck = signUpView.passwordCheckTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
-        
+
         if !isAvailableID(identification) { return }
+        if !isAvailablePassword(password, passwordCheck) { return }
         
         let keyNumber = makeRandomKey()
         let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
