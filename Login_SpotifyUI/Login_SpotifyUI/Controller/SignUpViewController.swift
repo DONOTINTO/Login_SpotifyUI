@@ -88,14 +88,38 @@ class SignUpViewController: UIViewController {
         return true
     }
     
+    func isAvailablePhone(_ phone: String) -> Bool {
+        let duplicationPhone = RegisterManager.shared.registerList.filter { $0.phone == phone }
+        
+        if phone.isEmpty {
+            signUpView.phoneTextField.placeholder = "전화번호를 입력해주세요."
+            return false
+        } else if !duplicationPhone.isEmpty {
+            signUpView.phoneTextField.placeholder = "이미 가입된 번호입니다."
+            return false
+        }
+        
+        guard Int(phone) != nil else {
+            signUpView.phoneTextField.placeholder = "숫자만 입력해주세요."
+            return false
+        }
+        return true
+    }
+    
     @objc func signUpButtonClicked() {
         guard let identification = signUpView.identificationTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let passwordCheck = signUpView.passwordCheckTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
+        
+        signUpView.identificationTextField.placeholder = ""
+        signUpView.passwordTextField.placeholder = "대소문자 및 특수문자가 포함되어야 합니다."
+        signUpView.passwordCheckTextField.placeholder = ""
+        signUpView.phoneTextField.placeholder = ""
 
         if !isAvailableID(identification) { return }
         if !isAvailablePassword(password, passwordCheck) { return }
+        if !isAvailablePhone(phone) { return }
         
         let keyNumber = makeRandomKey()
         let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
