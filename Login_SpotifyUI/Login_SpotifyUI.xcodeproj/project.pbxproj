@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = AC15538529ED77B0003C2196 /* TextFieldEffects */; };
 		AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0C29EBB9A4001D0B91 /* Register.swift */; };
 		AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */; };
 		AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028229E2DACA0054E216 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */,
+				AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +168,7 @@
 			name = Login_SpotifyUI;
 			packageProductDependencies = (
 				AC4F9D0429E2E81A005E72DC /* SnapKit */,
+				AC15538529ED77B0003C2196 /* TextFieldEffects */,
 			);
 			productName = Login_SpotifyUI;
 			productReference = AC30027F29E2DACA0054E216 /* Login_SpotifyUI.app */;
@@ -197,6 +200,7 @@
 			mainGroup = AC30027629E2DACA0054E216;
 			packageReferences = (
 				AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */,
+				AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = AC30028029E2DACA0054E216 /* Products */;
 			projectDirPath = "";
@@ -460,6 +464,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -471,6 +483,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AC15538529ED77B0003C2196 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
 		AC4F9D0429E2E81A005E72DC /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */;

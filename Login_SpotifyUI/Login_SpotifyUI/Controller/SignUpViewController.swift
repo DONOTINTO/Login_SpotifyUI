@@ -40,18 +40,30 @@ class SignUpViewController: UIViewController {
         return key
     }
     
+    func isAvailableID(_ id: String) -> Bool {
+        let duplicationID = RegisterManager.shared.registerList.filter { $0.identification == id }
+        
+        if id.isEmpty {
+            signUpView.identificationTextField.placeholder = "아이디를 입력해주세요."
+            return false
+        } else if !duplicationID.isEmpty {
+            signUpView.identificationTextField.placeholder = "중복된 아이디입니다."
+        } else {
+            signUpView.identificationTextField.placeholder = ""
+        }
+        
+        return duplicationID.isEmpty
+    }
+    
     @objc func signUpButtonClicked() {
         guard let identification = signUpView.identificationTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
-        if identification == "" || password == "" || phone == "" { return }
+        
+        if !isAvailableID(identification) { return }
         
         let keyNumber = makeRandomKey()
         let register = Register(identification: identification, password: password, phone: phone, keyNumber: keyNumber)
-        print(register.identification)
-        print(register.password)
-        print(register.phone)
-        print(register.keyNumber)
         
         RegisterManager.shared.registerList.append(register)
 
