@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = AC15538529ED77B0003C2196 /* TextFieldEffects */; };
 		AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0C29EBB9A4001D0B91 /* Register.swift */; };
 		AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */; };
 		AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028229E2DACA0054E216 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 		AC4F9D0E29E2FAEE005E72DC /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */; };
 		AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */; };
 		AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F9D1129E44029005E72DC /* SignUpView.swift */; };
+		AC6B4C0C29EEBD9A000D35E2 /* UIViewController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */; };
 		AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FD29E5A70E0022A13F /* LoginViewController.swift */; };
 		AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FF29E5A7EB0022A13F /* LoginView.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,7 @@
 		AC4F9D0D29E2FAEE005E72DC /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 		AC4F9D0F29E43904005E72DC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AC4F9D1129E44029005E72DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++.swift"; sourceTree = "<group>"; };
 		AC7115FD29E5A70E0022A13F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AC7115FF29E5A7EB0022A13F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */,
+				AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,7 @@
 				AC4F9D0A29E2EFC5005E72DC /* Controller */,
 				AC33C40529E9559900CD49B7 /* Constant */,
 				AC4F9D0C29E2F777005E72DC /* Font */,
+				AC6B4C0A29EEBD5F000D35E2 /* Extension */,
 				AC30028829E2DACA0054E216 /* Main.storyboard */,
 				AC30028B29E2DACB0054E216 /* Assets.xcassets */,
 				AC30028D29E2DACB0054E216 /* LaunchScreen.storyboard */,
@@ -148,6 +153,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		AC6B4C0A29EEBD5F000D35E2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +179,7 @@
 			name = Login_SpotifyUI;
 			packageProductDependencies = (
 				AC4F9D0429E2E81A005E72DC /* SnapKit */,
+				AC15538529ED77B0003C2196 /* TextFieldEffects */,
 			);
 			productName = Login_SpotifyUI;
 			productReference = AC30027F29E2DACA0054E216 /* Login_SpotifyUI.app */;
@@ -197,6 +211,7 @@
 			mainGroup = AC30027629E2DACA0054E216;
 			packageReferences = (
 				AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */,
+				AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = AC30028029E2DACA0054E216 /* Products */;
 			projectDirPath = "";
@@ -237,6 +252,7 @@
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
 				AC33C40E29EA4FAF00CD49B7 /* SuccessAlertViewController.swift in Sources */,
 				AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */,
+				AC6B4C0C29EEBD9A000D35E2 /* UIViewController++.swift in Sources */,
 				AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */,
 				AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */,
 				AC33C40929E9577300CD49B7 /* ProjColor.swift in Sources */,
@@ -460,6 +476,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -471,6 +495,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AC15538529ED77B0003C2196 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
 		AC4F9D0429E2E81A005E72DC /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */;

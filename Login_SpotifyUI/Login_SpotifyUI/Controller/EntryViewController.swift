@@ -29,11 +29,13 @@ class EntryViewController: UIViewController {
         }
     }
     
-    @objc func signUpButtonClicked() {
+    @objc func signUpButtonClicked(sender: UIButton) {
+        animateView(viewToAnimate: sender)
         navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
     
-    @objc func loginButtonClicked() {
+    @objc func loginButtonClicked(sender: UIButton) {
+        animateView(viewToAnimate: sender)
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
 }

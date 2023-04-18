@@ -18,6 +18,7 @@ class RegisterManager {
     }
     
     func remove(key: Int) {
+    
         if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
             registerList.remove(at: index)
         }
