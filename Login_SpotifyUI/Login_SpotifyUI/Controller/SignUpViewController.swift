@@ -115,7 +115,7 @@ class SignUpViewController: UIViewController {
         guard let phone = signUpView.phoneTextField.text else { return }
         
         signUpView.identificationTextField.placeholder = ""
-        signUpView.passwordTextField.placeholder = "대소문자 및 특수문자가 포함되어야 합니다."
+        signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         signUpView.phoneTextField.placeholder = ""
 
@@ -130,7 +130,7 @@ class SignUpViewController: UIViewController {
 
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
-        
+        // navigationController?.popViewController(animated: true)
         present(alertVC, animated: true)
     }
 }
