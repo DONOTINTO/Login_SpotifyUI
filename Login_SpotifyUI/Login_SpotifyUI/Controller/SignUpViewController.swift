@@ -18,8 +18,13 @@ class SignUpViewController: UIViewController {
         makeUI()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func initialSetup() {
         self.view.addSubview(signUpView)
+        [signUpView.identificationTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
         
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         
@@ -125,7 +130,13 @@ class SignUpViewController: UIViewController {
 
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
-        
         present(alertVC, animated: true)
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -10,7 +10,7 @@ import SnapKit
 
 class SuccessAlertViewController: UIViewController {
     let successAlertView = SuccessAlertView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +20,7 @@ class SuccessAlertViewController: UIViewController {
     
     func initialSetup() {
         view.addSubview(successAlertView)
+        successAlertView.confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
     }
     
     func makeUI() {
@@ -27,6 +28,15 @@ class SuccessAlertViewController: UIViewController {
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             $0.centerY.equalTo(self.view.snp.centerY)
+        }
+    }
+    
+    @objc func confirmButtonClicked(sender: UIButton) {
+        guard let presentingVC = self.presentingViewController as? UINavigationController else { return }
+        
+        self.animateView(viewToAnimate: sender)
+        self.dismiss(animated: true) {
+            presentingVC.popViewController(animated: true)
         }
     }
 }
