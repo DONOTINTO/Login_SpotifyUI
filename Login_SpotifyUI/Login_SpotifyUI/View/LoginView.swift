@@ -7,12 +7,13 @@
 
 import UIKit
 import SnapKit
+import TextFieldEffects
 
 class LoginView: UIView {
     let identificationLabel = UILabel()
-    let identificationTextField = UITextField()
+    let identificationTextField = YokoTextField()
     let passwordLabel = UILabel()
-    let passwordTextField = UITextField()
+    let passwordTextField = YokoTextField()
     let passwordHideButton = UIButton()
     let loginButton = UIButton()
 
@@ -52,14 +53,15 @@ class LoginView: UIView {
         textFieldInit(passwordTextField)
     }
     
-    func textFieldInit(_ textfield: UITextField) {
+    func textFieldInit(_ textfield: YokoTextField) {
         textfield.layer.cornerRadius = 4
         textfield.textColor = .white
         textfield.font = ProjFont.metro22
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textfield.leftView = paddingView
         textfield.leftViewMode = .always
-        textfield.backgroundColor = ProjColor.lightGray
+        textfield.foregroundColor = ProjColor.lightGray
+        textfield.placeholderColor = ProjColor.green
     }
     
     func makeUI() {
@@ -74,7 +76,7 @@ class LoginView: UIView {
             $0.top.equalTo(identificationLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(-16)
-            $0.height.equalTo(48)
+            $0.height.equalTo(60)
         }
         
         passwordLabel.snp.makeConstraints {
@@ -86,11 +88,11 @@ class LoginView: UIView {
             $0.top.equalTo(passwordLabel.snp.bottom).offset(8)
             $0.leading.equalTo(self.snp.leading).offset(16)
             $0.trailing.equalTo(self.snp.trailing).offset(-16)
-            $0.height.equalTo(48)
+            $0.height.equalTo(60)
         }
         
         passwordHideButton.snp.makeConstraints {
-            $0.centerY.equalTo(passwordTextField.snp.centerY)
+            $0.centerY.equalTo(passwordTextField.snp.centerY).offset(-10)
             $0.trailing.equalTo(passwordTextField.snp.trailing).inset(12)
         }
         
