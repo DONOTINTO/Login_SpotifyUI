@@ -30,6 +30,7 @@
 		AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FD29E5A70E0022A13F /* LoginViewController.swift */; };
 		AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FF29E5A7EB0022A13F /* LoginView.swift */; };
 		ACFA8F7C29F6A7E400F6381C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */; };
+		ACFA8F7E29F6A80D00F6381C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7D29F6A80D00F6381C /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		AC7115FD29E5A70E0022A13F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AC7115FF29E5A7EB0022A13F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ACFA8F7D29F6A80D00F6381C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				AC4F9D1129E44029005E72DC /* SignUpView.swift */,
 				AC7115FF29E5A7EB0022A13F /* LoginView.swift */,
 				AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */,
+				ACFA8F7D29F6A80D00F6381C /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
+				ACFA8F7E29F6A80D00F6381C /* HomeView.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
 				AC33C40E29EA4FAF00CD49B7 /* SuccessAlertViewController.swift in Sources */,
 				AC4F9D0129E2E78A005E72DC /* EntryView.swift in Sources */,
