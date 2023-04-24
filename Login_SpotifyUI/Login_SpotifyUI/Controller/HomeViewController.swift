@@ -21,11 +21,24 @@ class HomeViewController: UIViewController {
     
     func initialSetup() {
         view.addSubview(homeScrollView)
+        homeScrollView.playListTableView.delegate = self
+        homeScrollView.playListTableView.dataSource = self
     }
     
     func makeUI() {
         homeScrollView.snp.makeConstraints {
             $0.edges.equalTo(view.snp.edges)
         }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        return UITableViewCell()
     }
 }
