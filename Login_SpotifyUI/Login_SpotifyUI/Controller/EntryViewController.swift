@@ -21,6 +21,7 @@ class EntryViewController: UIViewController {
         view.addSubview(entryView)
         entryView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         entryView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        entryView.testButton.addTarget(self, action: #selector(testButtonClicked), for: .touchUpInside)
     }
 
     func makeUI() {
@@ -37,6 +38,11 @@ class EntryViewController: UIViewController {
     @objc func loginButtonClicked(sender: UIButton) {
         animateView(viewToAnimate: sender)
         navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
+    
+    @objc func testButtonClicked(sender: UIButton) {
+        let testVC = HomeViewController()
+        present(testVC, animated: true)
     }
 }
 

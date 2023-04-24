@@ -6,10 +6,26 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
+    
+    let homeScrollView = HomeScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initialSetup()
+        makeUI()
+    }
+    
+    func initialSetup() {
+        view.addSubview(homeScrollView)
+    }
+    
+    func makeUI() {
+        homeScrollView.snp.makeConstraints {
+            $0.edges.equalTo(view.snp.edges)
+        }
     }
 }
