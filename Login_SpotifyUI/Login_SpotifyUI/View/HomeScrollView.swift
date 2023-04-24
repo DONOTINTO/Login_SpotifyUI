@@ -15,6 +15,9 @@ class HomeScrollView: UIScrollView {
     let myPlayListLabel = UILabel()
     let addPlayListButton = UIButton()
     let playListTableView = UITableView()
+    let logoutButton = UIButton()
+    let deleteAccountButton = UIButton()
+    let accountButtonStackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +32,8 @@ class HomeScrollView: UIScrollView {
     
     func initialSetup() {
         [contentView].forEach { self.addSubview($0) }
-        [welcomeLabel, profileView, myPlayListLabel, addPlayListButton, playListTableView].forEach { contentView.addSubview($0) }
+        [welcomeLabel, profileView, myPlayListLabel, addPlayListButton, playListTableView, accountButtonStackView].forEach { contentView.addSubview($0) }
+        [logoutButton, deleteAccountButton].forEach { accountButtonStackView.addArrangedSubview($0) }
         
         self.backgroundColor = .black
         welcomeLabel.text = "환영"
@@ -52,12 +56,27 @@ class HomeScrollView: UIScrollView {
         addPlayListButton.layer.cornerRadius = 25
         
         playListTableView.backgroundColor = .black
+        
+        accountButtonStackView.axis = .horizontal
+        accountButtonStackView.spacing = 10
+        accountButtonStackView.alignment = .fill
+        accountButtonStackView.distribution = .fillEqually
+        
+        logoutButton.setTitle("로그아웃", for: .normal)
+        logoutButton.setTitleColor(.black, for: .normal)
+        logoutButton.backgroundColor = ProjColor.green
+        logoutButton.layer.cornerRadius = 15
+        
+        deleteAccountButton.setTitle("회원탈퇴", for: .normal)
+        deleteAccountButton.setTitleColor(.black, for: .normal)
+        deleteAccountButton.backgroundColor = ProjColor.green
+        deleteAccountButton.layer.cornerRadius = 15
     }
     
     func makeUI() {
         contentView.snp.makeConstraints {
-            $0.edges.equalTo(self.snp.edges)
             $0.width.equalTo(self.snp.width)
+            $0.edges.equalTo(self.snp.edges)
         }
         
         welcomeLabel.snp.makeConstraints {
@@ -89,6 +108,14 @@ class HomeScrollView: UIScrollView {
             $0.leading.equalTo(self.snp.leading).offset(20)
             $0.trailing.equalTo(self.snp.trailing).offset(-20)
             $0.height.equalTo(700)
+        }
+        
+        accountButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(playListTableView.snp.bottom).offset(20)
+            $0.leading.equalTo(self.snp.leading).offset(20)
+            $0.trailing.equalTo(self.snp.trailing).offset(-20)
+            $0.height.equalTo(49)
+            $0.bottom.equalTo(self.snp.bottom).offset(-20)
         }
     }
 }

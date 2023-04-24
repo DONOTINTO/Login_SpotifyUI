@@ -42,6 +42,7 @@ class EntryViewController: UIViewController {
     
     @objc func testButtonClicked(sender: UIButton) {
         let testVC = HomeViewController()
+        testVC.modalPresentationStyle = .fullScreen
         present(testVC, animated: true)
     }
 }

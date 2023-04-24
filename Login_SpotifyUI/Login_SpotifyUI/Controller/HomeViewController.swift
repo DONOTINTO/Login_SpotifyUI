@@ -27,7 +27,8 @@ class HomeViewController: UIViewController {
     
     func makeUI() {
         homeScrollView.snp.makeConstraints {
-            $0.edges.equalTo(view.snp.edges)
+            $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+            $0.width.equalTo(view.snp.width)
         }
     }
 }
