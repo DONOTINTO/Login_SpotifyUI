@@ -27,10 +27,12 @@ class HomeScrollView: UIScrollView {
         [contentView].forEach { self.addSubview($0) }
         [welcomeLabel].forEach { contentView.addSubview($0) }
         
-        self.backgroundColor = .white
-        welcomeLabel.font = ProjFont.metro27
-        welcomeLabel.textAlignment = .left
+        self.backgroundColor = .black
         welcomeLabel.text = "환영"
+        welcomeLabel.font = ProjFont.metro27
+        welcomeLabel.textColor = .white
+        welcomeLabel.textAlignment = .left
+        
     }
     
     func makeUI() {
