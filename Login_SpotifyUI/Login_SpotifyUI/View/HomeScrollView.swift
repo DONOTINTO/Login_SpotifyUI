@@ -11,6 +11,7 @@ class HomeScrollView: UIScrollView {
 
     let contentView = UIView()
     let welcomeLabel = UILabel()
+    let profileView = ProfileView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,13 +26,15 @@ class HomeScrollView: UIScrollView {
     
     func initialSetup() {
         [contentView].forEach { self.addSubview($0) }
-        [welcomeLabel].forEach { contentView.addSubview($0) }
+        [welcomeLabel, profileView].forEach { contentView.addSubview($0) }
         
         self.backgroundColor = .black
         welcomeLabel.text = "환영"
         welcomeLabel.font = ProjFont.metro27
         welcomeLabel.textColor = .white
         welcomeLabel.textAlignment = .left
+        
+        profileView.layer.cornerRadius = 10
         
     }
     
@@ -44,6 +47,13 @@ class HomeScrollView: UIScrollView {
         welcomeLabel.snp.makeConstraints {
             $0.top.equalTo(contentView.snp.top).offset(30)
             $0.leading.equalTo(contentView.snp.leading).offset(20)
+        }
+        
+        profileView.snp.makeConstraints {
+            $0.height.equalTo(120)
+            $0.top.equalTo(welcomeLabel.snp.bottom).offset(15)
+            $0.leading.equalTo(self.snp.leading).offset(20)
+            $0.trailing.equalTo(self.snp.trailing).offset(-20)
         }
     }
 }

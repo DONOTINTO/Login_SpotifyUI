@@ -17,6 +17,9 @@ class ProfileView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        initialSetup()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
@@ -38,9 +41,9 @@ class ProfileView: UIView {
         editProfileButton.setTitle("정보 수정", for: .normal)
         editProfileButton.setTitleColor(.black, for: .normal)
         editProfileButton.backgroundColor = ProjColor.green
-        editProfileButton.layer.cornerRadius = 25
+        editProfileButton.layer.cornerRadius = 15
         
-        profileImage.image = UIImage(named: "pencil")
+        profileImage.image = UIImage(systemName: "pencil")
     }
     
     func makeUI() {
