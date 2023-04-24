@@ -57,7 +57,9 @@ class LoginViewController: UIViewController {
     
     func isCollectPassword(id: String, password: String) -> Bool {
         let registerInfo = RegisterManager.shared.registerList.filter { $0.identification == id }.first
-        if registerInfo!.password == password { return true }
+        guard let registerInfo = registerInfo else { return false }
+        
+        if registerInfo.password == password { return true}
         
         return false
     }
