@@ -31,6 +31,7 @@
 		AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FF29E5A7EB0022A13F /* LoginView.swift */; };
 		ACFA8F7C29F6A7E400F6381C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */; };
 		ACFA8F8229F6AF4D00F6381C /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */; };
+		ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8329F6B0B400F6381C /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		AC7115FF29E5A7EB0022A13F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
+		ACFA8F8329F6B0B400F6381C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				AC7115FF29E5A7EB0022A13F /* LoginView.swift */,
 				AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */,
 				ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */,
+				ACFA8F8329F6B0B400F6381C /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				AC4F9D1229E44029005E72DC /* SignUpView.swift in Sources */,
 				ACFA8F8229F6AF4D00F6381C /* HomeScrollView.swift in Sources */,
 				AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */,
+				ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */,
 				AC33C40929E9577300CD49B7 /* ProjColor.swift in Sources */,
 				AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */,
 			);
