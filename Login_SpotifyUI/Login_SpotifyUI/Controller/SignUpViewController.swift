@@ -13,7 +13,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initialSetup()
         makeUI()
     }
@@ -99,7 +99,7 @@ class SignUpViewController: UIViewController {
             return false
         }
         
-        guard Int(phone) != nil else {
+        if Int(phone) == nil {
             signUpView.phoneTextField.placeholder = "숫자만 입력해주세요."
             return false
         }
@@ -118,7 +118,7 @@ class SignUpViewController: UIViewController {
         signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         signUpView.phoneTextField.placeholder = ""
-
+        
         if !isAvailableID(identification) { return }
         if !isAvailablePassword(password, passwordCheck) { return }
         if !isAvailablePhone(phone) { return }
@@ -127,7 +127,7 @@ class SignUpViewController: UIViewController {
         let register = Register(identification: identification, password: password, phone: phone)
         
         RegisterManager.shared.registerList.append(register)
-
+        
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)

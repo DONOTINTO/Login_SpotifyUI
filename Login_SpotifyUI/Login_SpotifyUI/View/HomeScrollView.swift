@@ -8,7 +8,6 @@
 import UIKit
 
 class HomeScrollView: UIScrollView {
-
     let contentView = UIView()
     let welcomeLabel = UILabel()
     let profileView = ProfileView()

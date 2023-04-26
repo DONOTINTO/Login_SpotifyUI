@@ -52,7 +52,7 @@ class EntryView: UIView {
         button.titleLabel?.font = ProjFont.metro16
         button.layer.cornerRadius = 25
     }
-
+    
     func makeUI() {
         logoImage.snp.makeConstraints {
             $0.centerX.equalTo(self.snp.centerX)

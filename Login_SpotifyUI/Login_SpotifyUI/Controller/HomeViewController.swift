@@ -9,9 +9,8 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-    
     let homeScrollView = HomeScrollView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +22,8 @@ class HomeViewController: UIViewController {
         view.addSubview(homeScrollView)
         homeScrollView.playListTableView.delegate = self
         homeScrollView.playListTableView.dataSource = self
+        
+        homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
     }
     
     func makeUI() {
@@ -30,6 +31,10 @@ class HomeViewController: UIViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
             $0.width.equalTo(view.snp.width)
         }
+    }
+    
+    @objc func testOut() {
+        dismiss(animated: true)
     }
 }
 

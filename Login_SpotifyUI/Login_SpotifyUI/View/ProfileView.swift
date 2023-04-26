@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class ProfileView: UIView {
-
     let playListCountLabel = UILabel()
     let likeCountLabel = UILabel()
     let editProfileButton = UIButton()
