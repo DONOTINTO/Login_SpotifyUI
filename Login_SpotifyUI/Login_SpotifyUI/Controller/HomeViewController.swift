@@ -55,6 +55,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
+        cell.backgroundColor = .clear
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
         cell.initialSetup()

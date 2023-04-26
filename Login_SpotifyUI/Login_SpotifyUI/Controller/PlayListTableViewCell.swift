@@ -15,9 +15,12 @@ class PlayListTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let likeButton = UIButton()
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        self.backgroundColor = .clear
+    }
+    
     func initialSetup() {
         [titleLabel, nameLabel, likeButton].forEach { contentView.addSubview($0) }
-        self.backgroundColor = .clear
         self.contentView.backgroundColor = ProjColor.green
         
         titleLabel.text = "test"
