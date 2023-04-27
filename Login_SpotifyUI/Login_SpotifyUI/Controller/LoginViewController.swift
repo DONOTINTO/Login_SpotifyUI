@@ -69,13 +69,21 @@ class LoginViewController: UIViewController {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
+        let homeVC = HomeViewController()
+        
+        RegisterManager.shared.registerList.forEach {
+            if $0.identification == id {
+                homeVC.register = $0
+            }
+        }
+        
+        homeVC.register = Register(identification: "asdf", nickName: "가나다", password: "!23", phone: "!23")
         
         //테스트를 위해 주석 처리
         // if isAvailableLogin(id: id, password: password) {
-        let homeVC = HomeViewController()
-        dismiss(animated: true) {
-            self.present(homeVC, animated: true)
-        }
+            dismiss(animated: true) {
+                self.present(homeVC, animated: true)
+            }
         // }
     }
 }

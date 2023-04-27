@@ -10,6 +10,7 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
+    var register: Register?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,10 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.register(PlayListTableViewCell.self, forCellReuseIdentifier: PlayListTableViewCell.identifier)
         homeScrollView.playListTableView.delegate = self
         homeScrollView.playListTableView.dataSource = self
+        
+        if let register = self.register {
+            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickName)님"
+        }
         
         homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
     }
