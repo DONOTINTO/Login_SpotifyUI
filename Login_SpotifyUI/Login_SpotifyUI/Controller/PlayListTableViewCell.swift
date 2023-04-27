@@ -33,7 +33,10 @@ class PlayListTableViewCell: UITableViewCell {
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
         
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
+        let image = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
+        likeButton.setImage(image, for: .normal)
+        likeButton.tintColor = .white
     }
     
     func makeUI() {

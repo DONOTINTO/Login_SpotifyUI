@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(signUpView)
-        [signUpView.identificationTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
+        [signUpView.identificationTextField, signUpView.nickNameTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
         
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         
@@ -110,6 +110,7 @@ class SignUpViewController: UIViewController {
         animateView(viewToAnimate: sender)
         
         guard let identification = signUpView.identificationTextField.text else { return }
+        guard let nickName = signUpView.nickNameTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let passwordCheck = signUpView.passwordCheckTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
@@ -124,7 +125,7 @@ class SignUpViewController: UIViewController {
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let register = Register(identification: identification, password: password, phone: phone)
+        let register = Register(identification: identification,nickName: nickName , password: password, phone: phone)
         
         RegisterManager.shared.registerList.append(register)
         
