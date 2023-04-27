@@ -55,6 +55,21 @@ class SignUpViewController: UIViewController {
         return duplicationID.isEmpty
     }
     
+    func isAvailableNickName(_ nickName: String) -> Bool {
+        let duplicationNickName = RegisterManager.shared.registerList.filter { $0.nickName == nickName }
+        
+        if nickName.isEmpty {
+            signUpView.nickNameTextField.placeholder = "닉네임을 입력해주세요."
+            return false
+        } else if !duplicationNickName.isEmpty {
+            signUpView.identificationTextField.placeholder = "중복된 닉네임입니다."
+        } else {
+            signUpView.identificationTextField.placeholder = ""
+        }
+        
+        return duplicationNickName.isEmpty
+    }
+    
     func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
         /// 특수문자 캐릭터셋
         let punctuationCharacterSet = CharacterSet.punctuationCharacters
@@ -116,14 +131,16 @@ class SignUpViewController: UIViewController {
         guard let phone = signUpView.phoneTextField.text else { return }
         
         signUpView.identificationTextField.placeholder = ""
+        signUpView.nickNameTextField.placeholder = ""
         signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         signUpView.phoneTextField.placeholder = ""
         
         if !isAvailableID(identification) { return }
+        if !isAvailableNickName(nickName) { return }
         if !isAvailablePassword(password, passwordCheck) { return }
         if !isAvailablePhone(phone) { return }
-        if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
+        if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
         let register = Register(identification: identification,nickName: nickName , password: password, phone: phone)
         
