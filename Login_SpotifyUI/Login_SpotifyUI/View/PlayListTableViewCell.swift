@@ -14,29 +14,38 @@ class PlayListTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let likeButton = UIButton()
+    var music: Music?
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         self.backgroundColor = .clear
     }
     
     func initialSetup() {
+        guard let music = self.music else { return }
+        
         [titleLabel, nameLabel, likeButton].forEach { contentView.addSubview($0) }
         self.contentView.backgroundColor = ProjColor.green
         
-        titleLabel.text = "test"
+        titleLabel.text = music.title
         titleLabel.font = ProjFont.metro22
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         
-        nameLabel.text = "testname"
+        nameLabel.text = music.artist
         nameLabel.font = ProjFont.metro15
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
         
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
-        let image = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
-        likeButton.setImage(image, for: .normal)
+        let likeImage = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
+        let unlikeImage = UIImage(systemName: "heart", withConfiguration: imageConfig)
         likeButton.tintColor = .white
+
+        if music.like == true {
+            likeButton.setImage(likeImage, for: .normal)
+        } else {
+            likeButton.setImage(unlikeImage, for: .normal)
+        }
     }
     
     func makeUI() {

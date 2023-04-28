@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
             }
         }
         
-        homeVC.register = Register(identification: "asdf", nickName: "가나다", password: "!23", phone: "!23")
+        homeVC.register = Register(identification: "asdf", nickName: "가나다", password: "!23", phone: "!23", playList: PlayList())
         
         //테스트를 위해 주석 처리
         // if isAvailableLogin(id: id, password: password) {
