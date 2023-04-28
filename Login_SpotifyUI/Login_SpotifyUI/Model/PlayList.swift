@@ -8,5 +8,5 @@
 import Foundation
 
 struct PlayList {
-    var list: [Music] = []
+    var list: [Music] = [Music(title: "How deep", artist: "Tai Verdes")]
 }

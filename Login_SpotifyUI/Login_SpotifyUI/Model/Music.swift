@@ -10,5 +10,5 @@ import Foundation
 struct Music {
     var title: String
     var artist: String
-    var like: Bool
+    var like: Bool = false
 }
