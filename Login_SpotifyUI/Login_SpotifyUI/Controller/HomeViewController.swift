@@ -70,6 +70,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return playList.list.count
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let register = self.register else { return }
+        
+        if editingStyle == .delete {
+            RegisterManager.shared.removePlayList(key: register.keyNumber)
+            homeScrollView.playListTableView.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
