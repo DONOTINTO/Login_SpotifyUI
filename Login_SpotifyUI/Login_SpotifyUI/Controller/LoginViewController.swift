@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 
+enum HidePasswordState {
+    case hide
+    case show
+}
+
 class LoginViewController: UIViewController {
     let loginView = LoginView()
+    var passwordData: String = ""
+    var hidePasswordData: String = ""
+    var passwordState = HidePasswordState.hide
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +28,9 @@ class LoginViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(loginView)
+        loginView.passwordTextField.delegate = self
         loginView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        loginView.passwordHideButton.addTarget(self, action: #selector(passwordHideButtonClicked), for: .touchUpInside)
         
         navigationController?.topViewController?.title = "로그인하기"
         navigationController?.navigationBar.topItem?.title = ""
@@ -39,7 +49,6 @@ class LoginViewController: UIViewController {
             loginView.identificationTextField.placeholder = "아이디를 입력해주세요."
             return false
         }
-        
         let register = RegisterManager.shared.registerList.filter({ $0.identification == id })
         
         if register.isEmpty {
@@ -52,7 +61,6 @@ class LoginViewController: UIViewController {
             loginView.passwordTextField.placeholder = "비밀번호가 일치하지 않습니다."
             return false
         }
-        
         return true
     }
     
@@ -61,7 +69,6 @@ class LoginViewController: UIViewController {
         guard let registerInfo = registerInfo else { return false }
         
         if registerInfo.password == password { return true}
-        
         return false
     }
     
@@ -87,5 +94,53 @@ class LoginViewController: UIViewController {
                 self.present(homeVC, animated: true)
             }
         // }
+    }
+    
+    @objc func passwordHideButtonClicked() {
+        switch passwordState {
+        case .hide:
+            passwordState = .show
+            loginView.passwordHideButton.setImage(ProjImage.eyeSlash, for: .normal)
+            loginView.passwordTextField.text = passwordData
+        case .show:
+            passwordState = .hide
+            loginView.passwordHideButton.setImage(ProjImage.eye, for: .normal)
+            loginView.passwordTextField.text = hidePasswordData
+        }
+        reloadInputViews()
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let startStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.lowerBound)
+        
+        // 복사넣기 시 하나씩 passwordData에 대입
+        if string.count > 1 {
+            let input = string.map { String($0) }
+            input.forEach { passwordData.append($0) }
+            input.forEach { _ in hidePasswordData.append("*") }
+        // delete가 아니면 문자열 추가
+        } else if !string.isEmpty {
+            passwordData.append(string)
+            hidePasswordData.append("*")
+        // 여러 문자열을 한번에 지울 때
+        } else if range.length > 1 {
+            let endStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.upperBound - 1)
+            passwordData.removeSubrange(startStringIndex ... endStringIndex)
+            hidePasswordData.removeSubrange(startStringIndex ... endStringIndex)
+        // 그 외 delete 처리
+        } else {
+            passwordData.remove(at: startStringIndex)
+            hidePasswordData.remove(at: startStringIndex)
+        }
+        
+        if passwordState == .hide, !string.isEmpty {
+            loginView.passwordTextField.text = hidePasswordData
+            return false
+        } else if passwordState == .hide, string.isEmpty {
+            return true
+        }
+        return true
     }
 }
