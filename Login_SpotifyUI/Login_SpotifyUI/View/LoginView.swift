@@ -16,9 +16,10 @@ class LoginView: UIView {
     let passwordTextField = YokoTextField()
     let passwordHideButton = UIButton()
     let loginButton = UIButton()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         initialSetup()
         makeUI()
     }
@@ -57,6 +58,7 @@ class LoginView: UIView {
         textfield.layer.cornerRadius = 4
         textfield.textColor = .white
         textfield.font = ProjFont.metro22
+        textfield.autocapitalizationType = .none
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textfield.leftView = paddingView
         textfield.leftViewMode = .always

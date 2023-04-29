@@ -11,8 +11,10 @@ extension UIViewController {
     func animateView(viewToAnimate: UIView) {
         UIView.animate(withDuration: 0.05, animations: {
             viewToAnimate.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.1) { viewToAnimate.transform = .identity }
-        })
+        }) { _ in
+            UIView.animate(withDuration: 0.1) {
+                viewToAnimate.transform = .identity
+            }
+        }
     }
 }
