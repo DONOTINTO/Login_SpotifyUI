@@ -16,8 +16,21 @@ class RegisterManager {
         registerList.append(register)
     }
     
+    func addPlayList(key: Int, music: Music) {
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
+            guard let playList = registerList[index].playList else { return }
+            playList.list.append(music)
+        }
+    }
+    
+    func removePlayList(key: Int) {
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
+            guard let playList = registerList[index].playList else { return }
+            playList.list.remove(at: index)
+        }
+    }
+    
     func remove(key: Int) {
-        
         if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
             registerList.remove(at: index)
         }

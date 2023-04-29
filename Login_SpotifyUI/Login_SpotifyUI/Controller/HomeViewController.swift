@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
             homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
         }
         
+        homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
         homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
     }
     
@@ -42,6 +43,12 @@ class HomeViewController: UIViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
             $0.width.equalTo(view.snp.width)
         }
+    }
+    
+    @objc func addPlayListButtonClicked() {
+        guard let register = self.register else { return }
+        RegisterManager.shared.addPlayList(key: register.keyNumber, music: Music(title: "test", artist: "이중엽"))
+        homeScrollView.playListTableView.reloadData()
     }
     
     @objc func testOut() {
@@ -59,7 +66,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let register = self.register else { return 0 }
+        guard let playList = register.playList else { return 0 }
+        
+        return playList.list.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let register = self.register else { return }
+        
+        if editingStyle == .delete {
+            RegisterManager.shared.removePlayList(key: register.keyNumber)
+            homeScrollView.playListTableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

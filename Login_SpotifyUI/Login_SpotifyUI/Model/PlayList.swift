@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PlayList {
-    var list: [Music] = [Music(title: "How deep", artist: "Tai Verdes")]
+class PlayList {
+    var list: [Music] = [Music(title: "How deep?", artist: "Tai Verdes")]
 }
