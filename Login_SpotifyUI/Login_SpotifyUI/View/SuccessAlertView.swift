@@ -9,11 +9,10 @@ import UIKit
 import SnapKit
 
 class SuccessAlertView: UIView {
-    
     let logoImage = UIImageView()
     let welcomeLabel = UILabel()
     let confirmButton = UIButton()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,7 +42,7 @@ class SuccessAlertView: UIView {
         confirmButton.backgroundColor = ProjColor.green
         confirmButton.layer.cornerRadius = 25
     }
- 
+    
     func makeUI() {
         logoImage.snp.makeConstraints {
             $0.top.equalTo(self.snp.top).offset(39)
