@@ -12,5 +12,6 @@ struct Register {
     var nickname: String
     var password: String
     var phone: String
+    var playList: PlayList?
     var keyNumber = Int.random(in: 1...999999)
 }

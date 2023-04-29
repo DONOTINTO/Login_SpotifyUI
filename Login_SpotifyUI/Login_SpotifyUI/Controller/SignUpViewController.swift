@@ -142,7 +142,7 @@ class SignUpViewController: UIViewController {
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let register = Register(identification: identification, nickname: nickName , password: password, phone: phone)
+        let register = Register(identification: identification, nickName: nickName , password: password, phone: phone, playList: PlayList())
         
         RegisterManager.shared.registerList.append(register)
         
