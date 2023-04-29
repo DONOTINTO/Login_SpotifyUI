@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 
+enum HidePasswordState {
+    case hide
+    case open
+}
+
 class LoginViewController: UIViewController {
     let loginView = LoginView()
+    var passwordData: String = ""
+    var hidePasswordData: String = ""
+    var normalPasswordState = HidePasswordState.hide
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +27,10 @@ class LoginViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(loginView)
+        loginView.passwordTextField.delegate = self
+        
         loginView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        loginView.passwordHideButton.addTarget(self, action: #selector(passwordHideButtonClicked), for: .touchUpInside)
         
         navigationController?.topViewController?.title = "로그인하기"
         navigationController?.navigationBar.topItem?.title = ""
@@ -72,5 +83,53 @@ class LoginViewController: UIViewController {
         if isAvailableLogin(id: id, password: password) {
             navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc func passwordHideButtonClicked() {
+        switch normalPasswordState {
+        case .hide:
+            normalPasswordState = .open
+            loginView.passwordHideButton.setImage(ProjImage.eyeSlash, for: .normal)
+            loginView.passwordTextField.text = passwordData
+        case .open:
+            normalPasswordState = .hide
+            loginView.passwordHideButton.setImage(ProjImage.eye, for: .normal)
+            loginView.passwordTextField.text = hidePasswordData
+        }
+        reloadInputViews()
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let startStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.lowerBound)
+        
+        // 복사넣기 시 하나씩 passwordData에 대입
+        if string.count > 1 {
+            let input = string.map { String($0) }
+            input.forEach { passwordData.append($0) }
+            input.forEach { _ in hidePasswordData.append("*") }
+        // delete가 아니면 문자열 추가
+        } else if string != "" {
+            passwordData.append(string)
+            hidePasswordData.append("*")
+        // 여러 문자열을 한번에 지울 때
+        } else if range.length > 1 {
+            let endStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.upperBound - 1)
+            passwordData.removeSubrange(startStringIndex ... endStringIndex)
+            hidePasswordData.removeSubrange(startStringIndex ... endStringIndex)
+        // 그 외 delete 처리
+        } else {
+            passwordData.remove(at: startStringIndex)
+            hidePasswordData.remove(at: startStringIndex)
+        }
+        
+        if normalPasswordState == .hide, string != "" {
+            loginView.passwordTextField.text = hidePasswordData
+            return false
+        } else if normalPasswordState == .hide, string == "" {
+            return true
+        }
+        return true
     }
 }

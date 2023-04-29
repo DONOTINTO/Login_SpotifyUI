@@ -38,7 +38,7 @@ class LoginView: UIView {
         passwordLabel.textColor = .white
         passwordLabel.font = ProjFont.metro25
         
-        passwordHideButton.setImage(ProjImage.eyeSlash, for: .normal)
+        passwordHideButton.setImage(ProjImage.eye, for: .normal)
         passwordHideButton.tintColor = .white
         passwordHideButton.imageView?.frame.size.width = 27
         passwordHideButton.imageView?.frame.size.height = 23

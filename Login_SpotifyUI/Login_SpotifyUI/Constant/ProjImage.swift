@@ -8,5 +8,6 @@
 import UIKit
 
 struct ProjImage {
+    static let eye = UIImage(systemName: "eye")
     static let eyeSlash = UIImage(systemName: "eye.slash")
 }
