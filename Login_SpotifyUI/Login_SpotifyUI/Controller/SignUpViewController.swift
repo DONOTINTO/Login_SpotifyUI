@@ -140,7 +140,6 @@ class SignUpViewController: UIViewController {
         
         let register = Register(identification: identification, nickName: nickName , password: password, phone: phone, playList: PlayList())
         RegisterManager.shared.registerList.append(register)
-        
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)
