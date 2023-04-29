@@ -55,19 +55,19 @@ class SignUpViewController: UIViewController {
         return duplicationID.isEmpty
     }
     
-    func isAvailableNickName(_ nickName: String) -> Bool {
-        let duplicationNickName = RegisterManager.shared.registerList.filter { $0.nickName == nickName }
+    func isAvailableNickName(_ nickname: String) -> Bool {
+        let isExistNickname = RegisterManager.shared.registerList.contains(where: { return $0.nickname == nickname })
         
-        if nickName.isEmpty {
+        if nickname.isEmpty {
             signUpView.nickNameTextField.placeholder = "닉네임을 입력해주세요."
             return false
-        } else if !duplicationNickName.isEmpty {
+        } else if isExistNickname {
             signUpView.identificationTextField.placeholder = "중복된 닉네임입니다."
         } else {
             signUpView.identificationTextField.placeholder = ""
         }
         
-        return duplicationNickName.isEmpty
+        return !isExistNickname
     }
     
     func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
@@ -142,7 +142,7 @@ class SignUpViewController: UIViewController {
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let register = Register(identification: identification,nickName: nickName , password: password, phone: phone)
+        let register = Register(identification: identification, nickname: nickName , password: password, phone: phone)
         
         RegisterManager.shared.registerList.append(register)
         

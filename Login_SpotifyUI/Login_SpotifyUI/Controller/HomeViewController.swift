@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.dataSource = self
         
         if let register = self.register {
-            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickName)님"
+            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
         }
         
         homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
