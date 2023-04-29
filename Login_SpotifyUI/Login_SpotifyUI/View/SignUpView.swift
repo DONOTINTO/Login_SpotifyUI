@@ -68,6 +68,7 @@ class SignUpView: UIView {
         textField.layer.cornerRadius = 4
         textField.textColor = .white
         textField.font = ProjFont.metro22
+        textField.autocapitalizationType = .none
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = .always

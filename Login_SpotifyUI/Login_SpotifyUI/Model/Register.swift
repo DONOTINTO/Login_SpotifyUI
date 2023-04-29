@@ -9,7 +9,7 @@ import UIKit
 
 struct Register {
     var identification: String
-    var nickName: String
+    var nickname: String
     var password: String
     var phone: String
     var playList: PlayList?
