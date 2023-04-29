@@ -29,6 +29,9 @@
 		AC6B4C0C29EEBD9A000D35E2 /* UIViewController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */; };
 		AC7115FE29E5A70E0022A13F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FD29E5A70E0022A13F /* LoginViewController.swift */; };
 		AC71160029E5A7EB0022A13F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7115FF29E5A7EB0022A13F /* LoginView.swift */; };
+		ACB312D529F9625B0055A533 /* PlayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312D429F9625B0055A533 /* PlayListTableViewCell.swift */; };
+		ACB312D929FBFA060055A533 /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312D829FBFA060055A533 /* PlayList.swift */; };
+		ACB312DB29FBFA590055A533 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312DA29FBFA590055A533 /* Music.swift */; };
 		ACFA8F7C29F6A7E400F6381C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */; };
 		ACFA8F8229F6AF4D00F6381C /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */; };
 		ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8329F6B0B400F6381C /* ProfileView.swift */; };
@@ -57,6 +60,9 @@
 		AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++.swift"; sourceTree = "<group>"; };
 		AC7115FD29E5A70E0022A13F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AC7115FF29E5A7EB0022A13F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ACB312D429F9625B0055A533 /* PlayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListTableViewCell.swift; sourceTree = "<group>"; };
+		ACB312D829FBFA060055A533 /* PlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayList.swift; path = Login_SpotifyUI/Model/PlayList.swift; sourceTree = SOURCE_ROOT; };
+		ACB312DA29FBFA590055A533 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
 		ACFA8F8329F6B0B400F6381C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 			children = (
 				AC2C7F0C29EBB9A4001D0B91 /* Register.swift */,
 				AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */,
+				ACB312D829FBFA060055A533 /* PlayList.swift */,
+				ACB312DA29FBFA590055A533 /* Music.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				AC7115FF29E5A7EB0022A13F /* LoginView.swift */,
 				AC33C40F29EA527800CD49B7 /* SuccessAlertView.swift */,
 				ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */,
+				ACB312D429F9625B0055A533 /* PlayListTableViewCell.swift */,
 				ACFA8F8329F6B0B400F6381C /* ProfileView.swift */,
 			);
 			path = View;
@@ -257,7 +266,10 @@
 				AC33C41029EA527800CD49B7 /* SuccessAlertView.swift in Sources */,
 				AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */,
 				AC2C7F0F29EBBA6E001D0B91 /* RegisterManager.swift in Sources */,
+				ACB312DB29FBFA590055A533 /* Music.swift in Sources */,
+				ACB312D529F9625B0055A533 /* PlayListTableViewCell.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
+				ACB312D929FBFA060055A533 /* PlayList.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
 				AC33C40E29EA4FAF00CD49B7 /* SuccessAlertViewController.swift in Sources */,

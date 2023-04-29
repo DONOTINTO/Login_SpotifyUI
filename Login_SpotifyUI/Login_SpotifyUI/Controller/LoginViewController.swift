@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 
+enum HidePasswordState {
+    case hide
+    case show
+}
+
 class LoginViewController: UIViewController {
     let loginView = LoginView()
+    var passwordData: String = ""
+    var hidePasswordData: String = ""
+    var passwordState = HidePasswordState.hide
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +28,9 @@ class LoginViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(loginView)
+        loginView.passwordTextField.delegate = self
         loginView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        loginView.passwordHideButton.addTarget(self, action: #selector(passwordHideButtonClicked), for: .touchUpInside)
         
         navigationController?.topViewController?.title = "로그인하기"
         navigationController?.navigationBar.topItem?.title = ""
@@ -59,7 +69,6 @@ class LoginViewController: UIViewController {
         guard let registerInfo = registerInfo else { return false }
         
         if registerInfo.password == password { return true}
-        
         return false
     }
     
@@ -67,9 +76,71 @@ class LoginViewController: UIViewController {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
+        let homeVC = HomeViewController()
         
-        if isAvailableLogin(id: id, password: password) {
-            navigationController?.popViewController(animated: true)
+        RegisterManager.shared.registerList.forEach {
+            if $0.identification == id {
+                homeVC.register = $0
+            }
         }
+        
+        let register = Register(identification: "asdf", nickName: "가나다", password: "!23", phone: "!23", playList: PlayList())
+        RegisterManager.shared.append(register)
+        homeVC.register = register
+        
+        //테스트를 위해 주석 처리
+        // if isAvailableLogin(id: id, password: password) {
+            dismiss(animated: true) {
+                self.present(homeVC, animated: true)
+            }
+        // }
+    }
+    
+    @objc func passwordHideButtonClicked() {
+        switch passwordState {
+        case .hide:
+            passwordState = .show
+            loginView.passwordHideButton.setImage(ProjImage.eyeSlash, for: .normal)
+            loginView.passwordTextField.text = passwordData
+        case .show:
+            passwordState = .hide
+            loginView.passwordHideButton.setImage(ProjImage.eye, for: .normal)
+            loginView.passwordTextField.text = hidePasswordData
+        }
+        reloadInputViews()
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let startStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.lowerBound)
+        
+        // 복사넣기 시 하나씩 passwordData에 대입
+        if string.count > 1 {
+            let input = string.map { String($0) }
+            input.forEach { passwordData.append($0) }
+            input.forEach { _ in hidePasswordData.append("*") }
+        // delete가 아니면 문자열 추가
+        } else if !string.isEmpty {
+            passwordData.append(string)
+            hidePasswordData.append("*")
+        // 여러 문자열을 한번에 지울 때
+        } else if range.length > 1 {
+            let endStringIndex = hidePasswordData.index(hidePasswordData.startIndex, offsetBy: range.upperBound - 1)
+            passwordData.removeSubrange(startStringIndex ... endStringIndex)
+            hidePasswordData.removeSubrange(startStringIndex ... endStringIndex)
+        // 그 외 delete 처리
+        } else {
+            passwordData.remove(at: startStringIndex)
+            hidePasswordData.remove(at: startStringIndex)
+        }
+        
+        if passwordState == .hide, !string.isEmpty {
+            loginView.passwordTextField.text = hidePasswordData
+            return false
+        } else if passwordState == .hide, string.isEmpty {
+            return true
+        }
+        return true
     }
 }

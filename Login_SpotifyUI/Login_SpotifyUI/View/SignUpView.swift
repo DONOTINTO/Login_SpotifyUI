@@ -12,6 +12,8 @@ import TextFieldEffects
 class SignUpView: UIView {
     let identificationLabel = UILabel()
     let identificationTextField = YokoTextField()
+    let nickNameLabel = UILabel()
+    let nickNameTextField = YokoTextField()
     let passwordLabel = UILabel()
     let passwordTextField = YokoTextField()
     let passwordCheckLabel = UILabel()
@@ -35,6 +37,7 @@ class SignUpView: UIView {
         self.backgroundColor = .black
         
         labelInit(identificationLabel, title: "아이디 또는 이메일 주소", textColor: .white, font: ProjFont.metro25)
+        labelInit(nickNameLabel, title: "닉네임", textColor: .white, font: ProjFont.metro25)
         labelInit(passwordLabel, title: "비밀번호", textColor: .white, font: ProjFont.metro25)
         labelInit(passwordCheckLabel, title: "비밀번호 재입력", textColor: .white, font: ProjFont.metro25)
         labelInit(phoneLabel, title: "전화번호", textColor: .white, font: ProjFont.metro25)
@@ -46,6 +49,7 @@ class SignUpView: UIView {
         
         textFieldInit(identificationTextField)
         identificationTextField.keyboardType = .emailAddress
+        textFieldInit(nickNameTextField)
         textFieldInit(passwordTextField)
         passwordTextField.placeholder = "대소문자 및 특수문자가 포함되어야 합니다."
         textFieldInit(passwordCheckTextField)
@@ -64,6 +68,7 @@ class SignUpView: UIView {
         textField.layer.cornerRadius = 4
         textField.textColor = .white
         textField.font = ProjFont.metro22
+        textField.autocapitalizationType = .none
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = .always
@@ -72,7 +77,7 @@ class SignUpView: UIView {
     }
     
     func makeUI() {
-        [identificationLabel, identificationTextField, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, phoneLabel, phoneTextField, signUpButton].forEach { addSubview($0) }
+        [identificationLabel, identificationTextField, nickNameLabel, nickNameTextField, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, phoneLabel, phoneTextField, signUpButton].forEach { addSubview($0) }
         
         identificationLabel.snp.makeConstraints {
             $0.top.equalTo(self.snp.top).offset(30)
@@ -86,8 +91,20 @@ class SignUpView: UIView {
             $0.height.equalTo(60)
         }
         
-        passwordLabel.snp.makeConstraints {
+        nickNameLabel.snp.makeConstraints {
             $0.top.equalTo(identificationTextField.snp.bottom).offset(10)
+            $0.leading.equalTo(self.snp.leading).offset(18)
+        }
+        
+        nickNameTextField.snp.makeConstraints {
+            $0.top.equalTo(nickNameLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(self.snp.leading).offset(16)
+            $0.trailing.equalTo(self.snp.trailing).offset(-16)
+            $0.height.equalTo(60)
+        }
+        
+        passwordLabel.snp.makeConstraints {
+            $0.top.equalTo(nickNameTextField.snp.bottom).offset(10)
             $0.leading.equalTo(self.snp.leading).offset(18)
         }
         
