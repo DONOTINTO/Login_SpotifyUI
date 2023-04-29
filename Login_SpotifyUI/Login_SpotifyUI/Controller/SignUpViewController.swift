@@ -56,18 +56,18 @@ class SignUpViewController: UIViewController {
     }
     
     func isAvailableNickName(_ nickname: String) -> Bool {
-        let isExistNickname = RegisterManager.shared.registerList.contains(where: { return $0.nickname == nickname })
+        let isNicknameExist = RegisterManager.shared.registerList.contains(where: { return $0.nickname == nickname })
         
         if nickname.isEmpty {
             signUpView.nickNameTextField.placeholder = "닉네임을 입력해주세요."
             return false
-        } else if isExistNickname {
+        } else if isNicknameExist {
             signUpView.identificationTextField.placeholder = "중복된 닉네임입니다."
         } else {
             signUpView.identificationTextField.placeholder = ""
         }
         
-        return !isExistNickname
+        return !isNicknameExist
     }
     
     func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
