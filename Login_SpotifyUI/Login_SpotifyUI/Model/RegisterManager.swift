@@ -8,7 +8,6 @@
 import UIKit
 
 class RegisterManager {
-    
     static let shared = RegisterManager()
     
     var registerList: [Register] = []
@@ -17,8 +16,21 @@ class RegisterManager {
         registerList.append(register)
     }
     
-    func remove(key: Int) {
+    func addPlayList(key: Int, music: Music) {
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
+            guard let playList = registerList[index].playList else { return }
+            playList.list.append(music)
+        }
+    }
     
+    func removePlayList(key: Int) {
+        if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
+            guard let playList = registerList[index].playList else { return }
+            playList.list.remove(at: index)
+        }
+    }
+    
+    func remove(key: Int) {
         if let index = registerList.firstIndex(where: { $0.keyNumber == key }) {
             registerList.remove(at: index)
         }
@@ -37,5 +49,5 @@ class RegisterManager {
         if let index = registerList.firstIndex(where: { $0.keyNumber == key}) {
             registerList[index].password = password
         }
-     }
+    }
 }
