@@ -51,7 +51,6 @@ class SignUpViewController: UIViewController {
         } else {
             signUpView.identificationTextField.placeholder = ""
         }
-        
         return duplicationID.isEmpty
     }
     
@@ -125,9 +124,7 @@ class SignUpViewController: UIViewController {
         if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
         
         let register = Register(identification: identification, password: password, phone: phone)
-        
         RegisterManager.shared.registerList.append(register)
-        
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)

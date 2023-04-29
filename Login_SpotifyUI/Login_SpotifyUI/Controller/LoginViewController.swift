@@ -39,7 +39,6 @@ class LoginViewController: UIViewController {
             loginView.identificationTextField.placeholder = "아이디를 입력해주세요."
             return false
         }
-        
         let register = RegisterManager.shared.registerList.filter({ $0.identification == id })
         
         if register.isEmpty {
@@ -52,7 +51,6 @@ class LoginViewController: UIViewController {
             loginView.passwordTextField.placeholder = "비밀번호가 일치하지 않습니다."
             return false
         }
-        
         return true
     }
     
