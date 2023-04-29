@@ -25,7 +25,6 @@ class SignUpViewController: UIViewController {
     func initialSetup() {
         self.view.addSubview(signUpView)
         [signUpView.identificationTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
-        
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         
         navigationController?.topViewController?.title = "회원가입"
@@ -51,7 +50,6 @@ class SignUpViewController: UIViewController {
         } else {
             signUpView.identificationTextField.placeholder = ""
         }
-        
         return duplicationID.isEmpty
     }
     
@@ -82,7 +80,6 @@ class SignUpViewController: UIViewController {
             signUpView.passwordCheckTextField.placeholder = ""
             return false
         }
-        
         signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         return true
@@ -125,9 +122,7 @@ class SignUpViewController: UIViewController {
         if identification.isEmpty || password.isEmpty || phone.isEmpty { return }
         
         let register = Register(identification: identification, password: password, phone: phone)
-        
         RegisterManager.shared.registerList.append(register)
-
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)

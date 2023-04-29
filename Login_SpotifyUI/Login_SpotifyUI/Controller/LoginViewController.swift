@@ -10,17 +10,18 @@ import SnapKit
 
 enum HidePasswordState {
     case hide
-    case open
+    case show
 }
 
 class LoginViewController: UIViewController {
     let loginView = LoginView()
     var passwordData: String = ""
     var hidePasswordData: String = ""
-    var normalPasswordState = HidePasswordState.hide
+    var passwordState = HidePasswordState.hide
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initialSetup()
         makeUI()
     }
@@ -28,7 +29,6 @@ class LoginViewController: UIViewController {
     func initialSetup() {
         self.view.addSubview(loginView)
         loginView.passwordTextField.delegate = self
-        
         loginView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
         loginView.passwordHideButton.addTarget(self, action: #selector(passwordHideButtonClicked), for: .touchUpInside)
         
@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
             loginView.identificationTextField.placeholder = "아이디를 입력해주세요."
             return false
         }
-        
         let register = RegisterManager.shared.registerList.filter({ $0.identification == id })
         
         if register.isEmpty {
@@ -62,7 +61,6 @@ class LoginViewController: UIViewController {
             loginView.passwordTextField.placeholder = "비밀번호가 일치하지 않습니다."
             return false
         }
-        
         return true
     }
     
@@ -71,7 +69,6 @@ class LoginViewController: UIViewController {
         guard let registerInfo = registerInfo else { return false }
         
         if registerInfo.password == password { return true}
-        
         return false
     }
     
@@ -86,13 +83,13 @@ class LoginViewController: UIViewController {
     }
     
     @objc func passwordHideButtonClicked() {
-        switch normalPasswordState {
+        switch passwordState {
         case .hide:
-            normalPasswordState = .open
+            passwordState = .show
             loginView.passwordHideButton.setImage(ProjImage.eyeSlash, for: .normal)
             loginView.passwordTextField.text = passwordData
-        case .open:
-            normalPasswordState = .hide
+        case .show:
+            passwordState = .hide
             loginView.passwordHideButton.setImage(ProjImage.eye, for: .normal)
             loginView.passwordTextField.text = hidePasswordData
         }
@@ -110,7 +107,7 @@ extension LoginViewController: UITextFieldDelegate {
             input.forEach { passwordData.append($0) }
             input.forEach { _ in hidePasswordData.append("*") }
         // delete가 아니면 문자열 추가
-        } else if string != "" {
+        } else if !string.isEmpty {
             passwordData.append(string)
             hidePasswordData.append("*")
         // 여러 문자열을 한번에 지울 때
@@ -124,10 +121,10 @@ extension LoginViewController: UITextFieldDelegate {
             hidePasswordData.remove(at: startStringIndex)
         }
         
-        if normalPasswordState == .hide, string != "" {
+        if passwordState == .hide, !string.isEmpty {
             loginView.passwordTextField.text = hidePasswordData
             return false
-        } else if normalPasswordState == .hide, string == "" {
+        } else if passwordState == .hide, string.isEmpty {
             return true
         }
         return true
