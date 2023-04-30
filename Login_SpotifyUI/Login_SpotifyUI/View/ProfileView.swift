@@ -42,7 +42,8 @@ class ProfileView: UIView {
         editProfileButton.backgroundColor = ProjColor.green
         editProfileButton.layer.cornerRadius = 15
         
-        profileImage.image = UIImage(systemName: "pencil")
+        profileImage.image = UIImage(systemName: "person.circle")
+        profileImage.tintColor = ProjColor.green
     }
     
     func makeUI() {
