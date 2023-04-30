@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     
     func initialSetup() {
         self.view.addSubview(signUpView)
-        [signUpView.identificationTextField, signUpView.nickNameTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
+        [signUpView.identificationTextField, signUpView.nicknameTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)        
         navigationController?.topViewController?.title = "회원가입"
         navigationController?.navigationBar.topItem?.title = ""
@@ -56,7 +56,7 @@ class SignUpViewController: UIViewController {
         let isNicknameExist = RegisterManager.shared.registerList.contains(where: { return $0.nickname == nickname })
         
         if nickname.isEmpty {
-            signUpView.nickNameTextField.placeholder = "닉네임을 입력해주세요."
+            signUpView.nicknameTextField.placeholder = "닉네임을 입력해주세요."
             return false
         } else if isNicknameExist {
             signUpView.identificationTextField.placeholder = "중복된 닉네임입니다."
@@ -121,13 +121,13 @@ class SignUpViewController: UIViewController {
         animateView(viewToAnimate: sender)
         
         guard let identification = signUpView.identificationTextField.text else { return }
-        guard let nickName = signUpView.nickNameTextField.text else { return }
+        guard let nickName = signUpView.nicknameTextField.text else { return }
         guard let password = signUpView.passwordTextField.text else { return }
         guard let passwordCheck = signUpView.passwordCheckTextField.text else { return }
         guard let phone = signUpView.phoneTextField.text else { return }
         
         signUpView.identificationTextField.placeholder = ""
-        signUpView.nickNameTextField.placeholder = ""
+        signUpView.nicknameTextField.placeholder = ""
         signUpView.passwordTextField.placeholder = ""
         signUpView.passwordCheckTextField.placeholder = ""
         signUpView.phoneTextField.placeholder = ""
@@ -138,7 +138,7 @@ class SignUpViewController: UIViewController {
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let register = Register(identification: identification, nickName: nickName , password: password, phone: phone, playList: PlayList())
+        let register = Register(identification: identification, nickname: nickName , password: password, phone: phone, playList: PlayList())
         RegisterManager.shared.registerList.append(register)
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext

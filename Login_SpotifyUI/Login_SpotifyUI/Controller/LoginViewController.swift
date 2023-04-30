@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
             }
         }
         
-        let register = Register(identification: "asdf", nickName: "가나다", password: "!23", phone: "!23", playList: PlayList())
+        let register = Register(identification: "asdf", nickname: "가나다", password: "!23", phone: "!23", playList: PlayList())
         RegisterManager.shared.append(register)
         homeVC.register = register
         

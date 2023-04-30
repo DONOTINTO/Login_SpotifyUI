@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         if let register = self.register {
             guard let playList = register.playList else { return }
             
-            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickName)님"
+            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
             homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList?.list.count ?? 0)개"
             let likeList = playList.list.filter { $0.isLike }
             homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
