@@ -56,7 +56,8 @@ class HomeViewController: UIViewController {
     
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
-        RegisterManager.shared.addPlayList(key: register.keyNumber, music: Music(title: "test", artist: "이중엽"))
+        let newMusic = Music(title: "test-title", artist: "test-artist")
+        RegisterManager.shared.addPlayList(key: register.keyNumber, music: newMusic)
         homeScrollView.playListTableView.reloadData()
     }
     
