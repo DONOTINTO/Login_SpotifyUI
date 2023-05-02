@@ -46,6 +46,8 @@ class PlayListTableViewCell: UITableViewCell {
         } else {
             likeButton.setImage(unlikeImage, for: .normal)
         }
+        
+        likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
     }
     
     func makeUI() {
@@ -63,6 +65,23 @@ class PlayListTableViewCell: UITableViewCell {
             $0.top.equalTo(contentView.snp.top).offset(10)
             $0.trailing.equalTo(contentView.snp.trailing).offset(-10)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
+        }
+    }
+    
+    @objc func likeButtonClicked() {
+        guard let music = self.music else { return }
+        
+        music.toggleIsLike()
+        
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
+        let likeImage = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
+        let unlikeImage = UIImage(systemName: "heart", withConfiguration: imageConfig)
+        likeButton.tintColor = .white
+
+        if music.isLike {
+            likeButton.setImage(likeImage, for: .normal)
+        } else {
+            likeButton.setImage(unlikeImage, for: .normal)
         }
     }
 }

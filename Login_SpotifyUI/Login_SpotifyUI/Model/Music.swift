@@ -7,8 +7,17 @@
 
 import Foundation
 
-struct Music {
+class Music {
     var title: String
     var artist: String
     var isLike: Bool = true
+    
+    init(title: String, artist: String) {
+        self.title = title
+        self.artist = artist
+    }
+    
+    func toggleIsLike() {
+        isLike.toggle()
+    }
 }
