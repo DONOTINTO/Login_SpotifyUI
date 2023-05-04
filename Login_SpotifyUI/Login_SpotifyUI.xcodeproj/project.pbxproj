@@ -32,6 +32,8 @@
 		ACB312D529F9625B0055A533 /* PlayListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312D429F9625B0055A533 /* PlayListTableViewCell.swift */; };
 		ACB312D929FBFA060055A533 /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312D829FBFA060055A533 /* PlayList.swift */; };
 		ACB312DB29FBFA590055A533 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312DA29FBFA590055A533 /* Music.swift */; };
+		ACB312E02A03D73E0055A533 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = ACB312DF2A03D73E0055A533 /* Realm */; };
+		ACB312E22A03D73E0055A533 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ACB312E12A03D73E0055A533 /* RealmSwift */; };
 		ACFA8F7C29F6A7E400F6381C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */; };
 		ACFA8F8229F6AF4D00F6381C /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */; };
 		ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8329F6B0B400F6381C /* ProfileView.swift */; };
@@ -73,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB312E22A03D73E0055A533 /* RealmSwift in Frameworks */,
+				ACB312E02A03D73E0055A533 /* Realm in Frameworks */,
 				AC4F9D0529E2E81A005E72DC /* SnapKit in Frameworks */,
 				AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */,
 			);
@@ -198,6 +202,8 @@
 			packageProductDependencies = (
 				AC4F9D0429E2E81A005E72DC /* SnapKit */,
 				AC15538529ED77B0003C2196 /* TextFieldEffects */,
+				ACB312DF2A03D73E0055A533 /* Realm */,
+				ACB312E12A03D73E0055A533 /* RealmSwift */,
 			);
 			productName = Login_SpotifyUI;
 			productReference = AC30027F29E2DACA0054E216 /* Login_SpotifyUI.app */;
@@ -230,6 +236,7 @@
 			packageReferences = (
 				AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */,
 				AC15538429ED77B0003C2196 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				ACB312DE2A03D73D0055A533 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AC30028029E2DACA0054E216 /* Products */;
 			projectDirPath = "";
@@ -516,6 +523,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		ACB312DE2A03D73D0055A533 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -528,6 +543,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AC4F9D0329E2E81A005E72DC /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		ACB312DF2A03D73E0055A533 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB312DE2A03D73D0055A533 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		ACB312E12A03D73E0055A533 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACB312DE2A03D73D0055A533 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
