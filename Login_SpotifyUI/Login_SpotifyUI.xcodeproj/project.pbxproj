@@ -34,6 +34,7 @@
 		ACB312DB29FBFA590055A533 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312DA29FBFA590055A533 /* Music.swift */; };
 		ACB312E02A03D73E0055A533 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = ACB312DF2A03D73E0055A533 /* Realm */; };
 		ACB312E22A03D73E0055A533 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ACB312E12A03D73E0055A533 /* RealmSwift */; };
+		ACB312E42A03E0FA0055A533 /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB312E32A03E0FA0055A533 /* RealmData.swift */; };
 		ACFA8F7C29F6A7E400F6381C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */; };
 		ACFA8F8229F6AF4D00F6381C /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */; };
 		ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFA8F8329F6B0B400F6381C /* ProfileView.swift */; };
@@ -65,6 +66,7 @@
 		ACB312D429F9625B0055A533 /* PlayListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListTableViewCell.swift; sourceTree = "<group>"; };
 		ACB312D829FBFA060055A533 /* PlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayList.swift; path = Login_SpotifyUI/Model/PlayList.swift; sourceTree = SOURCE_ROOT; };
 		ACB312DA29FBFA590055A533 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		ACB312E32A03E0FA0055A533 /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 		ACFA8F7B29F6A7E400F6381C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ACFA8F8129F6AF4D00F6381C /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
 		ACFA8F8329F6B0B400F6381C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				AC2C7F0E29EBBA6E001D0B91 /* RegisterManager.swift */,
 				ACB312D829FBFA060055A533 /* PlayList.swift */,
 				ACB312DA29FBFA590055A533 /* Music.swift */,
+				ACB312E32A03E0FA0055A533 /* RealmData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				ACFA8F8429F6B0B400F6381C /* ProfileView.swift in Sources */,
 				AC33C40929E9577300CD49B7 /* ProjColor.swift in Sources */,
 				AC4F9D1029E43904005E72DC /* SignUpViewController.swift in Sources */,
+				ACB312E42A03E0FA0055A533 /* RealmData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
