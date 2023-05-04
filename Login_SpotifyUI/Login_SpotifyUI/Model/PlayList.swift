@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-class PlayList {
-    var list: [Music] = [Music(title: "How deep?", artist: "Tai Verdes")]
+class PlayList: Object {
+    // @Persisted var list: List<Music> = [Music(title: "How deep?", artist: "Tai Verdes")]
+    @Persisted var list = List<Music>()
 }
