@@ -18,4 +18,10 @@ class RealmData: RealmDataProtocol {
     init(realm: Realm) {
         self.realm = realm
     }
+    
+    func add(_ data: Register) {
+        try! realm.write {
+            realm.add(data)
+        }
+    }
 }

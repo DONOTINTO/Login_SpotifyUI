@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class SignUpViewController: UIViewController {
     let signUpView = SignUpView()
+    let realm = try! Realm()
+    var realmData: RealmData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,8 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        realmData = RealmData(realm: realm)
     }
     
     func makeUI() {
@@ -140,6 +145,11 @@ class SignUpViewController: UIViewController {
         
         let register = Register(identification: identification, nickname: nickName , password: password, phone: phone, playList: PlayList())
         RegisterManager.shared.registerList.append(register)
+        
+        if let realmData = realmData {
+            realmData.add(register)
+        }
+        
         let alertVC = SuccessAlertViewController()
         alertVC.modalPresentationStyle = .overCurrentContext
         present(alertVC, animated: true)
