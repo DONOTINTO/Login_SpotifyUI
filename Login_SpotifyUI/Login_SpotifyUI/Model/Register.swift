@@ -13,15 +13,13 @@ class Register: Object {
     @Persisted var nickname: String
     @Persisted var password: String
     @Persisted var phone: String
-    @Persisted var playList: PlayList?
-    @Persisted var keyNumber = Int.random(in: 1...999999)
+    @Persisted var playList = List<Music>()
     
-    convenience init(identification: String, nickname: String, password: String, phone: String, playList: PlayList) {
+    convenience init(identification: String, nickname: String, password: String, phone: String) {
         self.init()
         self.identification = identification
         self.nickname = nickname
         self.password = password
         self.phone = phone
-        self.playList = playList
     }
 }

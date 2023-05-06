@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 enum HidePasswordState {
     case hide
@@ -18,6 +19,9 @@ class LoginViewController: UIViewController {
     var passwordData: String = ""
     var hidePasswordData: String = ""
     var passwordState = HidePasswordState.hide
+    var realm = try! Realm()
+    var realmData: RealmData?
+    var registerList: [Register]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,9 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        realmData = RealmData(realm: self.realm)
+        if let realmData = self.realmData { registerList = realmData.fetch() }
     }
     
     func makeUI() {
@@ -45,11 +52,13 @@ class LoginViewController: UIViewController {
     }
     
     func isAvailableLogin(id: String, password: String) -> Bool {
+        guard let registerList = registerList else { return false }
+        let register = registerList.filter { $0.identification == id }
+        
         if id.isEmpty {
             loginView.identificationTextField.placeholder = "아이디를 입력해주세요."
             return false
         }
-        let register = RegisterManager.shared.registerList.filter({ $0.identification == id })
         
         if register.isEmpty {
             loginView.identificationTextField.placeholder = "존재하지 않는 아이디입니다."
@@ -65,8 +74,8 @@ class LoginViewController: UIViewController {
     }
     
     func isCollectPassword(id: String, password: String) -> Bool {
-        let registerInfo = RegisterManager.shared.registerList.filter { $0.identification == id }.first
-        guard let registerInfo = registerInfo else { return false }
+        guard let registerList = registerList else { return false }
+        guard let registerInfo = registerList.filter({ $0.identification == id }).first else { return false }
         
         if registerInfo.password == password { return true}
         return false
@@ -76,24 +85,20 @@ class LoginViewController: UIViewController {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
+        guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
         
-        RegisterManager.shared.registerList.forEach {
+        registerList.forEach {
             if $0.identification == id {
                 homeVC.register = $0
             }
         }
         
-        let register = Register(identification: "asdf", nickname: "가나다", password: "!23", phone: "!23", playList: PlayList())
-        RegisterManager.shared.append(register)
-        homeVC.register = register
-        
-        //테스트를 위해 주석 처리
-        // if isAvailableLogin(id: id, password: password) {
+        if isAvailableLogin(id: id, password: password) {
             dismiss(animated: true) {
                 self.present(homeVC, animated: true)
             }
-        // }
+        }
     }
     
     @objc func passwordHideButtonClicked() {

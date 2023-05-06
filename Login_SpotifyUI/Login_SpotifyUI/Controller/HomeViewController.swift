@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
@@ -28,11 +29,9 @@ class HomeViewController: UIViewController {
         imagePickerController.delegate = self
         
         if let register = self.register {
-            guard let playList = register.playList else { return }
-            
             homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
-            homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(playList.list.count)개"
-            let likeList = playList.list.filter { $0.isLike }
+            homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
+            let likeList = register.playList.filter { $0.isLike }
             homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
         }
         
@@ -57,7 +56,10 @@ class HomeViewController: UIViewController {
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
         let newMusic = Music(title: "test-title", artist: "test-artist")
-        RegisterManager.shared.addPlayList(key: register.keyNumber, music: newMusic)
+        // RegisterManager.shared.addPlayList(key: register.keyNumber, music: newMusic)
+        let realm = try! Realm()
+        let realmData = RealmData(realm: realm)
+        realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         homeScrollView.playListTableView.reloadData()
     }
     
@@ -76,15 +78,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let register = self.register else { return 0 }
-        guard let playList = register.playList else { return 0 }
-        return playList.list.count
+        return register.playList.count
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let register = self.register else { return }
         
         if editingStyle == .delete {
-            RegisterManager.shared.removePlayList(key: register.keyNumber)
+            let realm = try! Realm()
+            let realmData = RealmData(realm: realm)
+            realmData.removePlayList(identifier: register.identification, index: indexPath.row)
             homeScrollView.playListTableView.reloadData()
         }
     }
@@ -93,7 +96,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
         if let register = self.register {
-            let music = register.playList?.list[indexPath.row]
+            let music = register.playList[indexPath.row]
             cell.music = music
         }
         

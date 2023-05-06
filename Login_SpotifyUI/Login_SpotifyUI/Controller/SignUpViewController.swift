@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
     let signUpView = SignUpView()
     let realm = try! Realm()
     var realmData: RealmData?
+    var registerList: [Register]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,8 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        realmData = RealmData(realm: realm)
+        self.realmData = RealmData(realm: realm)
+        if let realmData = self.realmData { registerList = realmData.fetch() }
     }
     
     func makeUI() {
@@ -44,7 +46,9 @@ class SignUpViewController: UIViewController {
     }
     
     func isAvailableID(_ id: String) -> Bool {
-        let duplicationID = RegisterManager.shared.registerList.filter { $0.identification == id }
+        guard let registerList = registerList else { return false }
+        
+        let duplicationID = registerList.filter { $0.identification == id }
         
         if id.isEmpty {
             signUpView.identificationTextField.placeholder = "아이디를 입력해주세요."
@@ -58,7 +62,9 @@ class SignUpViewController: UIViewController {
     }
     
     func isAvailableNickName(_ nickname: String) -> Bool {
-        let isNicknameExist = RegisterManager.shared.registerList.contains(where: { return $0.nickname == nickname })
+        guard let registerList = registerList else { return false }
+        
+        let isNicknameExist = registerList.contains { $0.nickname == nickname }
         
         if nickname.isEmpty {
             signUpView.nicknameTextField.placeholder = "닉네임을 입력해주세요."
@@ -105,7 +111,9 @@ class SignUpViewController: UIViewController {
     }
     
     func isAvailablePhone(_ phone: String) -> Bool {
-        let duplicationPhone = RegisterManager.shared.registerList.filter { $0.phone == phone }
+        guard let registerList = registerList else { return false }
+        
+        let duplicationPhone = registerList.filter { $0.phone == phone }
         
         if phone.isEmpty {
             signUpView.phoneTextField.placeholder = "전화번호를 입력해주세요."
@@ -143,8 +151,7 @@ class SignUpViewController: UIViewController {
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
-        let register = Register(identification: identification, nickname: nickName , password: password, phone: phone, playList: PlayList())
-        RegisterManager.shared.registerList.append(register)
+        let register = Register(identification: identification, nickname: nickName , password: password, phone: phone)
         
         if let realmData = realmData {
             realmData.add(register)
