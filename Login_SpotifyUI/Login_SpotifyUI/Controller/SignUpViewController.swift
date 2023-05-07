@@ -36,7 +36,9 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         self.realmData = RealmData(realm: realm)
-        if let realmData = self.realmData { registerList = realmData.fetch() }
+        if let realmData = self.realmData {
+            registerList = realmData.fetch()
+        }
     }
     
     func makeUI() {

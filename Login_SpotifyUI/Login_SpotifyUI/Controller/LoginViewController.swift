@@ -42,7 +42,9 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         realmData = RealmData(realm: self.realm)
-        if let realmData = self.realmData { registerList = realmData.fetch() }
+        if let realmData = self.realmData {
+            registerList = realmData.fetch()
+        }
     }
     
     func makeUI() {

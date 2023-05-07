@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
     var register: Register?
+    var realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +57,6 @@ class HomeViewController: UIViewController {
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
         let newMusic = Music(title: "test-title", artist: "test-artist")
-        // RegisterManager.shared.addPlayList(key: register.keyNumber, music: newMusic)
-        let realm = try! Realm()
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         homeScrollView.playListTableView.reloadData()
@@ -85,7 +84,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let register = self.register else { return }
         
         if editingStyle == .delete {
-            let realm = try! Realm()
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
             homeScrollView.playListTableView.reloadData()

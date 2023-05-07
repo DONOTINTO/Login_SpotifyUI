@@ -14,7 +14,6 @@ protocol RealmDataProtocol {
 }
 
 class RealmData: RealmDataProtocol {
-    
     private let realm: Realm
     
     init(realm: Realm) {
