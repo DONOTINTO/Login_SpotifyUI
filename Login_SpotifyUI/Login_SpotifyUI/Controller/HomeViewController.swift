@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     var register: Register?
     var realm = try! Realm()
+    var loginData: LoginData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.dataSource = self
         imagePickerController.delegate = self
         
+        loginData = LoginData(realm: realm)
+        
         if let register = self.register {
             homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
             homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
@@ -38,7 +41,7 @@ class HomeViewController: UIViewController {
         
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
-        homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
+        homeScrollView.logoutButton.addTarget(self, action: #selector(logoutButtonClicked), for: .touchUpInside)
     }
     
     func makeUI() {
@@ -62,8 +65,14 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.reloadData()
     }
     
-    @objc func testOut() {
-        dismiss(animated: true)
+    @objc func logoutButtonClicked() {
+        guard let loginData = self.loginData else { return }
+        guard let register = self.register else { return }
+        loginData.loginUpdate(item: register, loginStatus: false)
+        dismiss(animated: true) {
+            let HomeVC = EntryViewController()
+            self.present(HomeVC, animated: true)
+        }
     }
 }
 
