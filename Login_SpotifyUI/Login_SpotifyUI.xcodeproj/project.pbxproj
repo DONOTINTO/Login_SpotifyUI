@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AC0BE9042A09405900BED88D /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0BE9032A09405900BED88D /* LoginData.swift */; };
-		AC0BE9062A0A736300BED88D /* UIWindow++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0BE9052A0A736300BED88D /* UIWindow++.swift */; };
 		AC15538629ED77B0003C2196 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = AC15538529ED77B0003C2196 /* TextFieldEffects */; };
 		AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C7F0C29EBB9A4001D0B91 /* Register.swift */; };
 		AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30028229E2DACA0054E216 /* AppDelegate.swift */; };
@@ -42,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		AC0BE9032A09405900BED88D /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
-		AC0BE9052A0A736300BED88D /* UIWindow++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow++.swift"; sourceTree = "<group>"; };
 		AC2C7F0C29EBB9A4001D0B91 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		AC30027F29E2DACA0054E216 /* Login_SpotifyUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login_SpotifyUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC30028229E2DACA0054E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				AC6B4C0B29EEBD9A000D35E2 /* UIViewController++.swift */,
-				AC0BE9052A0A736300BED88D /* UIWindow++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -277,7 +274,6 @@
 				AC2C7F0D29EBB9A4001D0B91 /* Register.swift in Sources */,
 				ACB312DB29FBFA590055A533 /* Music.swift in Sources */,
 				ACB312D529F9625B0055A533 /* PlayListTableViewCell.swift in Sources */,
-				AC0BE9062A0A736300BED88D /* UIWindow++.swift in Sources */,
 				AC30028329E2DACA0054E216 /* AppDelegate.swift in Sources */,
 				AC30028529E2DACA0054E216 /* SceneDelegate.swift in Sources */,
 				AC33C40729E955D900CD49B7 /* ProjFont.swift in Sources */,
