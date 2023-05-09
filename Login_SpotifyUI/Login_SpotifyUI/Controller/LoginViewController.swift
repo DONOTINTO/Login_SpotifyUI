@@ -92,6 +92,7 @@ class LoginViewController: UIViewController {
         guard let loginData = loginData else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
+        homeVC.modalPresentationStyle = .fullScreen
         
         registerList.forEach {
             if $0.identification == id {

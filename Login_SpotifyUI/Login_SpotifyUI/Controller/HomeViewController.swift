@@ -69,10 +69,11 @@ class HomeViewController: UIViewController {
         guard let loginData = self.loginData else { return }
         guard let register = self.register else { return }
         loginData.loginUpdate(item: register, loginStatus: false)
-        dismiss(animated: true) {
-            let HomeVC = EntryViewController()
-            self.present(HomeVC, animated: true)
-        }
+        
+        let entryVC = EntryViewController()
+        let navigationVC = UINavigationController(rootViewController: entryVC)
+        self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
+        self.view.window?.rootViewController = navigationVC
     }
 }
 
