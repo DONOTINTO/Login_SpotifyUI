@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-///Users/goods99j/Library/Developer/CoreSimulator/Devices/79EA4DDB-3E32-4C19-BB8B-5CC1D8079D43/data/Containers/Data/Application/
+
 class LoginData {
     private let realm: Realm
     
