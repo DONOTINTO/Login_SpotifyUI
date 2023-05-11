@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     var hidePasswordData: String = ""
     var passwordState = HidePasswordState.hide
     var realmData: RealmData?
+    var loginData: LoginData?
     var registerList: [Register]?
     
     override func viewDidLoad() {
@@ -42,6 +43,7 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         realmData = RealmData(realm: self.realm)
+        loginData = LoginData(realm: self.realm)
         if let realmData = self.realmData {
             registerList = realmData.fetch()
         }
@@ -87,8 +89,10 @@ class LoginViewController: UIViewController {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
+        guard let loginData = loginData else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
+        homeVC.modalPresentationStyle = .fullScreen
         
         registerList.forEach {
             if $0.identification == id {
@@ -96,8 +100,11 @@ class LoginViewController: UIViewController {
             }
         }
         
+        guard let register = homeVC.register else { return }
+        
         if isAvailableLogin(id: id, password: password) {
             dismiss(animated: true) {
+                loginData.loginUpdate(item: register, loginStatus: true)
                 self.present(homeVC, animated: true)
             }
         }
