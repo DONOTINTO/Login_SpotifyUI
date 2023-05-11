@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Register {
-    var identification: String
-    var nickname: String
-    var password: String
-    var phone: String
-    var playList: PlayList?
-    var keyNumber = Int.random(in: 1...999999)
+class Register: Object {
+    @Persisted(primaryKey: true) var identification: String
+    @Persisted var nickname: String
+    @Persisted var password: String
+    @Persisted var phone: String
+    @Persisted var playList = List<Music>()
+    
+    convenience init(identification: String, nickname: String, password: String, phone: String) {
+        self.init()
+        self.identification = identification
+        self.nickname = nickname
+        self.password = password
+        self.phone = phone
+    }
 }

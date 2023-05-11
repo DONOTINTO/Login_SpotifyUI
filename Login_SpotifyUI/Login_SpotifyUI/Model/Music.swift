@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Music {
-    var title: String
-    var artist: String
-    var isLike: Bool = true
+class Music: Object {
+    @Persisted var title: String
+    @Persisted var artist: String
+    @Persisted var isLike: Bool = true
     
-    init(title: String, artist: String) {
+    convenience init(title: String, artist: String) {
+        self.init()
         self.title = title
         self.artist = artist
     }
