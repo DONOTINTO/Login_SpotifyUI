@@ -12,8 +12,8 @@ import RealmSwift
 class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
+    let realm = try! Realm()
     var register: Register?
-    var realm = try! Realm()
     var loginData: LoginData?
     
     override func viewDidLoad() {
