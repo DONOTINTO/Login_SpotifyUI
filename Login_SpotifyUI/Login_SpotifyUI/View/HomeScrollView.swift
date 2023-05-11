@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeScrollView: UIScrollView {
     let contentView = UIView()
@@ -115,6 +116,15 @@ class HomeScrollView: UIScrollView {
             $0.trailing.equalTo(self.snp.trailing).offset(-20)
             $0.height.equalTo(49)
             $0.bottom.equalTo(self.snp.bottom).offset(-20)
+        }
+    }
+    
+    func updateUI(height: Int) {
+        playListTableView.snp.makeConstraints {
+            $0.top.equalTo(myPlayListLabel.snp.bottom).offset(10)
+            $0.leading.equalTo(self.snp.leading).offset(20)
+            $0.trailing.equalTo(self.snp.trailing).offset(-20)
+            $0.height.equalTo(height)
         }
     }
 }

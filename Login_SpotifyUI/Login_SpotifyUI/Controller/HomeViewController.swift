@@ -71,6 +71,7 @@ class HomeViewController: UIViewController {
         let newMusic = Music(title: "test-title", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
+        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
     }
