@@ -106,7 +106,7 @@ class HomeScrollView: UIScrollView {
             $0.top.equalTo(myPlayListLabel.snp.bottom).offset(10)
             $0.leading.equalTo(self.snp.leading).offset(20)
             $0.trailing.equalTo(self.snp.trailing).offset(-20)
-            $0.height.equalTo(700)
+            $0.height.equalTo(500)
         }
         
         accountButtonStackView.snp.makeConstraints {

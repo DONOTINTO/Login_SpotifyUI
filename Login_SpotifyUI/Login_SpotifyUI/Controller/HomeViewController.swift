@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
     var register: Register?
+    var heightForRow: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +30,13 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.dataSource = self
         imagePickerController.delegate = self
         
-        if let register = self.register {
-            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
-            homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
-            let likeList = register.playList.filter { $0.isLike }
-            homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
-        }
+        let spacing: CGFloat = 10
+        let titleHeight: CGFloat = ProjFont.metro22.lineHeight
+        let nameHeight: CGFloat = ProjFont.metro15.lineHeight
+        
+        heightForRow = titleHeight + nameHeight + (spacing * 3)
+        
+        updateProfileView()
         
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
@@ -48,6 +50,15 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func updateProfileView() {
+        if let register = self.register {
+            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
+            homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
+            let likeList = register.playList.filter { $0.isLike }
+            homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
+        }
+    }
+    
     @objc func editProfileButtonClicked() {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = true
@@ -56,9 +67,11 @@ class HomeViewController: UIViewController {
     
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
+        guard let heightForRow = self.heightForRow else { return }
         let newMusic = Music(title: "test-title", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
+        updateProfileView()
         homeScrollView.playListTableView.reloadData()
     }
     
@@ -69,10 +82,8 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let spacing: CGFloat = 10
-        let titleHeight: CGFloat = ProjFont.metro22.lineHeight
-        let nameHeight: CGFloat = ProjFont.metro15.lineHeight
-        return titleHeight + nameHeight + (spacing * 3)
+        guard let heightForRow = self.heightForRow else { return 0 }
+        return heightForRow
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,6 +97,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
+            updateProfileView()
             homeScrollView.playListTableView.reloadData()
         }
     }
