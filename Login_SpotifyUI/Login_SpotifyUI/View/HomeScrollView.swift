@@ -120,7 +120,7 @@ class HomeScrollView: UIScrollView {
     }
     
     func updateUI(height: Int) {
-        playListTableView.snp.makeConstraints {
+        playListTableView.snp.remakeConstraints {
             $0.top.equalTo(myPlayListLabel.snp.bottom).offset(10)
             $0.leading.equalTo(self.snp.leading).offset(20)
             $0.trailing.equalTo(self.snp.trailing).offset(-20)

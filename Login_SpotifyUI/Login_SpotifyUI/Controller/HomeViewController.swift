@@ -36,6 +36,10 @@ class HomeViewController: UIViewController {
         
         heightForRow = titleHeight + nameHeight + (spacing * 3)
         
+        guard let heightForRow = self.heightForRow else { return }
+        guard let register = self.register else { return }
+        
+        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
         
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
@@ -94,10 +98,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let register = self.register else { return }
+        guard let heightForRow = self.heightForRow else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
+            homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
         }
