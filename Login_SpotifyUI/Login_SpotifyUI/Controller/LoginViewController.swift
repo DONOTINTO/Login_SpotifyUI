@@ -86,7 +86,6 @@ class LoginViewController: UIViewController {
     @objc func loginButtonClicked() {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
-        guard let password = loginView.passwordTextField.text else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
         
@@ -96,7 +95,7 @@ class LoginViewController: UIViewController {
             }
         }
         
-        if isAvailableLogin(id: id, password: password) {
+        if isAvailableLogin(id: id, password: passwordData) {
             dismiss(animated: true) {
                 self.present(homeVC, animated: true)
             }
