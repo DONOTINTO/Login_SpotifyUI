@@ -16,10 +16,10 @@ enum HidePasswordState {
 
 class LoginViewController: UIViewController {
     let loginView = LoginView()
+    let realm = try! Realm()
     var passwordData: String = ""
     var hidePasswordData: String = ""
     var passwordState = HidePasswordState.hide
-    var realm = try! Realm()
     var realmData: RealmData?
     var registerList: [Register]?
     
