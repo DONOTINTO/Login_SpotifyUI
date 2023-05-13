@@ -6,20 +6,40 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var realm = try! Realm()
+    var loginData: LoginData?
+    var isLoginNow: Bool = false
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScence)
         
-        let rootVC = EntryViewController()
-        let navigationVC = UINavigationController(rootViewController: rootVC)
+        loginData = LoginData(realm: self.realm)
+        let registerList = loginData!.fetch()
+        var register: Register?
         
-        window?.rootViewController = navigationVC
+        registerList.forEach {
+            if $0.isLogin {
+                isLoginNow = true
+                register = $0
+            }
+        }
+        
+        let rootVC = isLoginNow ? HomeViewController() : EntryViewController()
+        if let rootVC = rootVC as? HomeViewController {
+            rootVC.register = register!
+            let navigationVC = UINavigationController(rootViewController: rootVC)
+            window?.rootViewController = navigationVC
+        } else {
+            let navigationVC = UINavigationController(rootViewController: rootVC)
+            window?.rootViewController = navigationVC
+        }
+        
         window?.makeKeyAndVisible()
     }
     

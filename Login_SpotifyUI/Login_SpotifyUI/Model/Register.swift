@@ -13,6 +13,7 @@ class Register: Object {
     @Persisted var nickname: String
     @Persisted var password: String
     @Persisted var phone: String
+    @Persisted var isLogin: Bool = false
     @Persisted var playList = List<Music>()
     
     convenience init(identification: String, nickname: String, password: String, phone: String) {

@@ -77,8 +77,15 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.reloadData()
     }
     
-    @objc func testOut() {
-        dismiss(animated: true)
+    @objc func logoutButtonClicked() {
+        guard let loginData = self.loginData else { return }
+        guard let register = self.register else { return }
+        loginData.loginUpdate(item: register, loginStatus: false)
+        
+        let entryVC = EntryViewController()
+        let navigationVC = UINavigationController(rootViewController: entryVC)
+        self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
+        self.view.window?.rootViewController = navigationVC
     }
 }
 
