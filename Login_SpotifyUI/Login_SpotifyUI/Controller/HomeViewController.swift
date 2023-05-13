@@ -30,10 +30,12 @@ class HomeViewController: UIViewController {
         homeScrollView.playListTableView.dataSource = self
         imagePickerController.delegate = self
         
+        homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
+        homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
+        homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
         let nameHeight: CGFloat = ProjFont.metro15.lineHeight
-        
         heightForRow = titleHeight + nameHeight + (spacing * 3)
         
         guard let heightForRow = self.heightForRow else { return }
@@ -41,10 +43,6 @@ class HomeViewController: UIViewController {
         
         homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
-        
-        homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
-        homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
-        homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
     }
     
     func makeUI() {
@@ -55,12 +53,11 @@ class HomeViewController: UIViewController {
     }
     
     func updateProfileView() {
-        if let register = self.register {
-            homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
-            homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
-            let likeList = register.playList.filter { $0.isLike }
-            homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
-        }
+        guard let register = self.register else { return }
+        homeScrollView.welcomeLabel.text = "환영합니다. \(register.nickname)님"
+        homeScrollView.profileView.playListCountLabel.text = "플레이리스트: \(register.playList.count)개"
+        let likeList = register.playList.filter { $0.isLike }
+        homeScrollView.profileView.likeCountLabel.text = "좋아요: \(likeList.count)개"
     }
     
     @objc func editProfileButtonClicked() {
