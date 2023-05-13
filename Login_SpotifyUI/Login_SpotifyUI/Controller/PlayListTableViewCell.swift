@@ -83,10 +83,6 @@ class PlayListTableViewCell: UITableViewCell {
         let unlikeImage = UIImage(systemName: "heart", withConfiguration: imageConfig)
         likeButton.tintColor = .white
 
-        if music.isLike {
-            likeButton.setImage(likeImage, for: .normal)
-        } else {
-            likeButton.setImage(unlikeImage, for: .normal)
-        }
+        likeButton.setImage(music.isLike ? likeImage : unlikeImage, for: .normal)
     }
 }
