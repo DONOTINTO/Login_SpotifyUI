@@ -131,8 +131,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.backgroundColor = .clear
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.masksToBounds = true
         cell.initialSetup()
         cell.makeUI()
         cell.cb = cb
