@@ -18,6 +18,7 @@ class PlayListTableViewCell: UITableViewCell {
     let realm = try! Realm()
     var realmData: RealmData?
     var music: Music?
+    var cb: (() -> ())?
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         self.backgroundColor = .clear
@@ -76,6 +77,7 @@ class PlayListTableViewCell: UITableViewCell {
     @objc func likeButtonClicked() {
         guard let music = self.music else { return }
         guard let realmData = self.realmData else { return }
+        guard let cb = self.cb else { return }
         
         realmData.toggleisLike(music: music, isLike: !music.isLike)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
@@ -84,5 +86,6 @@ class PlayListTableViewCell: UITableViewCell {
         likeButton.tintColor = .white
 
         likeButton.setImage(music.isLike ? likeImage : unlikeImage, for: .normal)
+        cb()
     }
 }

@@ -126,11 +126,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.music = music
         }
         
+        let cb: () -> () = {
+            self.updateProfileView()
+        }
+        
         cell.backgroundColor = .clear
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
         cell.initialSetup()
         cell.makeUI()
+        cell.cb = cb
         return cell
     }
 }
