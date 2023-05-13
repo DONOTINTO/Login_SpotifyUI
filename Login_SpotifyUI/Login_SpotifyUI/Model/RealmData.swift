@@ -30,6 +30,12 @@ class RealmData: RealmDataProtocol {
         }
     }
     
+    func delete(_ data: Register) {
+        try! realm.write {
+            realm.delete(data)
+        }
+    }
+    
     func addPlayList(identifier: String, newMusic: Music) {
         try! realm.write {
             guard let object = realm.object(ofType: Register.self, forPrimaryKey: identifier) else { return }

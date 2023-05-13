@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
     var register: Register?
+    var realmData: RealmData?
     var loginData: LoginData?
     var heightForRow: CGFloat?
     
@@ -34,7 +35,9 @@ class HomeViewController: UIViewController {
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
         homeScrollView.logoutButton.addTarget(self, action: #selector(logoutButtonClicked), for: .touchUpInside)
+        homeScrollView.deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonClicked), for: .touchUpInside)
         
+        realmData = RealmData(realm: realm)
         loginData = LoginData(realm: realm)
         
         let spacing: CGFloat = 10
@@ -86,6 +89,17 @@ class HomeViewController: UIViewController {
         guard let loginData = self.loginData else { return }
         guard let register = self.register else { return }
         loginData.loginUpdate(item: register, loginStatus: false)
+        
+        let entryVC = EntryViewController()
+        let navigationVC = UINavigationController(rootViewController: entryVC)
+        self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
+        self.view.window?.rootViewController = navigationVC
+    }
+    
+    @objc func deleteAccountButtonClicked() {
+        guard let realmData = self.realmData else { return }
+        guard let register = self.register else { return }
+        realmData.delete(register)
         
         let entryVC = EntryViewController()
         let navigationVC = UINavigationController(rootViewController: entryVC)
