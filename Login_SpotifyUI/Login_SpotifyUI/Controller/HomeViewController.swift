@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
+    let searchController = UISearchController(searchResultsController: nil)
     var register: Register?
     var realmData: RealmData?
     var loginData: LoginData?
@@ -39,6 +40,11 @@ class HomeViewController: UIViewController {
         
         realmData = RealmData(realm: realm)
         loginData = LoginData(realm: realm)
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "검색어를 입력하세요."
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
         
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
@@ -150,6 +156,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cb = cb
         return cell
     }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    
 }
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
