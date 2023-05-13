@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
     var register: Register?
+    var loginData: LoginData?
     var heightForRow: CGFloat?
     
     override func viewDidLoad() {
@@ -32,7 +33,10 @@ class HomeViewController: UIViewController {
         
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
-        homeScrollView.logoutButton.addTarget(self, action: #selector(testOut), for: .touchUpInside)
+        homeScrollView.logoutButton.addTarget(self, action: #selector(logoutButtonClicked), for: .touchUpInside)
+        
+        loginData = LoginData(realm: realm)
+        
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
         let nameHeight: CGFloat = ProjFont.metro15.lineHeight
@@ -69,7 +73,8 @@ class HomeViewController: UIViewController {
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
         guard let heightForRow = self.heightForRow else { return }
-        let newMusic = Music(title: "test-title", artist: "test-artist")
+        let randomCount = Int.random(in: 1...1000)
+        let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)

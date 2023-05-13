@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class PlayListTableViewCell: UITableViewCell {
     static let identifier = "playListCell"
@@ -14,6 +15,8 @@ class PlayListTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let likeButton = UIButton()
+    let realm = try! Realm()
+    var realmData: RealmData?
     var music: Music?
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,6 +25,8 @@ class PlayListTableViewCell: UITableViewCell {
     
     func initialSetup() {
         guard let music = self.music else { return }
+        
+        realmData = RealmData(realm: self.realm)
         
         [titleLabel, nameLabel, likeButton].forEach { contentView.addSubview($0) }
         self.contentView.backgroundColor = ProjColor.green
@@ -70,9 +75,9 @@ class PlayListTableViewCell: UITableViewCell {
     
     @objc func likeButtonClicked() {
         guard let music = self.music else { return }
+        guard let realmData = self.realmData else { return }
         
-        music.toggleIsLike()
-        
+        realmData.toggleisLike(music: music, isLike: !music.isLike)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
         let likeImage = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
         let unlikeImage = UIImage(systemName: "heart", withConfiguration: imageConfig)

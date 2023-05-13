@@ -43,4 +43,10 @@ class RealmData: RealmDataProtocol {
             object.playList.remove(at: index)
         }
     }
+    
+    func toggleisLike(music: Music, isLike: Bool) {
+        try! realm.write {
+            music.isLike = isLike
+        }
+    }
 }
