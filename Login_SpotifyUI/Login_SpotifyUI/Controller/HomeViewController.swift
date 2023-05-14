@@ -42,8 +42,11 @@ class HomeViewController: UIViewController {
         loginData = LoginData(realm: realm)
         
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "검색어를 입력하세요."
         searchController.searchBar.delegate = self
+        searchController.searchBar.tintColor = ProjColor.green
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "검색어를 입력하세요.", attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.5)])
+        searchController.searchBar.searchTextField.backgroundColor = ProjColor.lightGray
+        
         navigationItem.searchController = searchController
         
         let spacing: CGFloat = 10
