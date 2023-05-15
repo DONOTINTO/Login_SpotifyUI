@@ -12,10 +12,7 @@ import RealmSwift
 class PlayListTableViewCell: UITableViewCell {
     static let identifier = "playListCell"
     
-    let cellView: UIView = {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            return view
-    }()
+    let cellView: UIView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let likeButton = UIButton()
