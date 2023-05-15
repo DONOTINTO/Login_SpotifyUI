@@ -126,14 +126,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.music = music
         }
         
-        let cb: () -> () = {
+        let callBack: () -> Void = {
             self.updateProfileView()
         }
         
         cell.backgroundColor = .clear
         cell.initialSetup()
         cell.makeUI()
-        cell.cb = cb
+        cell.callBack = callBack
         return cell
     }
 }
