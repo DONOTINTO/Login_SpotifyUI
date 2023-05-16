@@ -25,10 +25,6 @@ class PlayListTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
     }
     
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        self.backgroundColor = .clear
-    }
-    
     func initialSetup() {
         guard let music = self.music else { return }
         

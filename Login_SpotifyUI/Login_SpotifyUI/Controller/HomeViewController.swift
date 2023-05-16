@@ -131,6 +131,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         cell.initialSetup()
         cell.makeUI()
         cell.callBack = callBack
