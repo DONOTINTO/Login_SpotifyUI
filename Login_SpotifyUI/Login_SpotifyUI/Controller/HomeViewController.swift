@@ -169,6 +169,14 @@ extension HomeViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         guard let register = self.register else { return }
+        
+        if searchText.isEmpty {
+            filteredData = register.playList
+        } else {
+            filteredData = nil
+        }
+        
+        homeScrollView.playListTableView.reloadData()
     }
 }
 
