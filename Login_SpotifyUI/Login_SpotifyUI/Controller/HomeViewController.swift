@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
         
         guard let register = self.register else { return }
         
-        homeScrollView.updateUI(height: Int(rowHeight) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
     }
     
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
-        homeScrollView.updateUI(height: Int(rowHeight) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
     }
@@ -122,7 +122,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
-            homeScrollView.updateUI(height: Int(rowHeight) * register.playList.count)
+            homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
         }
