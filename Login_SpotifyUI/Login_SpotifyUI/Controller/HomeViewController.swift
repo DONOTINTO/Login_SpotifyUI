@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     var realmData: RealmData?
     var loginData: LoginData?
     var heightForRow: CGFloat?
-    lazy var filteredData = register?.playList
+    var filteredData: List<Music>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
         
         guard let heightForRow = self.heightForRow else { return }
         guard let register = self.register else { return }
+        filteredData = register.playList
         
         homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
@@ -166,14 +167,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        guard let searchText = searchController.searchBar.text else { return }
+        guard let register = self.register else { return }
     }
-    
-    
 }
 
 extension HomeViewController: UISearchBarDelegate {
-    
 }
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
