@@ -14,8 +14,9 @@ class HomeViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
     var register: Register?
+    var realmData: RealmData?
     var loginData: LoginData?
-    var heightForRow: CGFloat?
+    var rowHeight: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,18 +35,19 @@ class HomeViewController: UIViewController {
         homeScrollView.profileView.editProfileButton.addTarget(self, action: #selector(editProfileButtonClicked), for: .touchUpInside)
         homeScrollView.addPlayListButton.addTarget(self, action: #selector(addPlayListButtonClicked), for: .touchUpInside)
         homeScrollView.logoutButton.addTarget(self, action: #selector(logoutButtonClicked), for: .touchUpInside)
+        homeScrollView.deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonClicked), for: .touchUpInside)
         
+        realmData = RealmData(realm: realm)
         loginData = LoginData(realm: realm)
         
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
         let nameHeight: CGFloat = ProjFont.metro15.lineHeight
-        heightForRow = titleHeight + nameHeight + (spacing * 3)
+        rowHeight = titleHeight + nameHeight + (spacing * 3)
         
-        guard let heightForRow = self.heightForRow else { return }
         guard let register = self.register else { return }
         
-        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
     }
     
@@ -72,12 +74,11 @@ class HomeViewController: UIViewController {
     
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
-        guard let heightForRow = self.heightForRow else { return }
         let randomCount = Int.random(in: 1...1000)
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
-        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
     }
@@ -92,12 +93,22 @@ class HomeViewController: UIViewController {
         self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
         self.view.window?.rootViewController = navigationVC
     }
+    
+    @objc func deleteAccountButtonClicked() {
+        guard let realmData = self.realmData else { return }
+        guard let register = self.register else { return }
+        realmData.delete(register)
+        
+        let entryVC = EntryViewController()
+        let navigationVC = UINavigationController(rootViewController: entryVC)
+        self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
+        self.view.window?.rootViewController = navigationVC
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let heightForRow = self.heightForRow else { return 0 }
-        return heightForRow
+        return rowHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,12 +118,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let register = self.register else { return }
-        guard let heightForRow = self.heightForRow else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
-            homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+            homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
         }
