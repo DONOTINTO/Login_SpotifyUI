@@ -80,7 +80,7 @@ class SignUpViewController: UIViewController {
         return !isNicknameExist
     }
     
-    func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
+    func isCorrectPassword(_ password: String, _ passwordCheck: String) -> Bool {
         /// 특수문자 캐릭터셋
         let punctuationCharacterSet = CharacterSet.punctuationCharacters
         let upperChar = password.filter { $0.isUppercase }
@@ -149,7 +149,7 @@ class SignUpViewController: UIViewController {
         
         if !isAvailableID(identification) { return }
         if !isAvailableNickName(nickName) { return }
-        if !isAvailablePassword(password, passwordCheck) { return }
+        if !isCorrectPassword(password, passwordCheck) { return }
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         
