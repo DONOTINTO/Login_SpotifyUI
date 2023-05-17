@@ -88,23 +88,23 @@ class LoginViewController: UIViewController {
     @objc func loginButtonClicked() {
         animateView(viewToAnimate: loginView.loginButton)
         guard let id = loginView.identificationTextField.text else { return }
-        guard let password = loginView.passwordTextField.text else { return }
-        guard let loginData = loginData else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
+        var register: Register?
         homeVC.modalPresentationStyle = .fullScreen
         
         registerList.forEach {
             if $0.identification == id {
                 homeVC.register = $0
+                register = $0
             }
         }
         
-        guard let register = homeVC.register else { return }
+        guard let register = register else { return }
         
-        if isAvailableLogin(id: id, password: password) {
+        if isAvailableLogin(id: id, password: passwordData) {
             dismiss(animated: true) {
-                loginData.loginUpdate(item: register, loginStatus: true)
+                self.loginData?.loginUpdate(item: register, loginStatus: true)
                 self.present(homeVC, animated: true)
             }
         }

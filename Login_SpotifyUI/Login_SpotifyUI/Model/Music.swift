@@ -18,8 +18,4 @@ class Music: Object {
         self.title = title
         self.artist = artist
     }
-    
-    func toggleIsLike() {
-        isLike.toggle()
-    }
 }

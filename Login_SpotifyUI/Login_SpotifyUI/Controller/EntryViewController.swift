@@ -22,7 +22,6 @@ class EntryViewController: UIViewController {
         view.addSubview(entryView)
         entryView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         entryView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
-        entryView.testButton.addTarget(self, action: #selector(testButtonClicked), for: .touchUpInside)
     }
     
     func makeUI() {

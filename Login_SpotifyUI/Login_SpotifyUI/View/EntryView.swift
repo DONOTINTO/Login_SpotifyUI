@@ -13,7 +13,6 @@ class EntryView: UIView {
     let introLabel = UILabel()
     let signUpButton = UIButton()
     let loginButton = UIButton()
-    let testButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +26,7 @@ class EntryView: UIView {
     }
     
     func initialSetup() {
-        [logoImage, introLabel, signUpButton, loginButton, testButton].forEach { self.addSubview($0) }
+        [logoImage, introLabel, signUpButton, loginButton].forEach { self.addSubview($0) }
         self.backgroundColor = .black
         
         logoImage.image = UIImage(named: "Spotify_Logo")
@@ -40,10 +39,8 @@ class EntryView: UIView {
         
         buttonInit(button: signUpButton, title: "가입하기", titleColor: .black)
         buttonInit(button: loginButton, title: "로그인하기", titleColor: .white)
-        buttonInit(button: testButton, title: "테스트", titleColor: .white)
         signUpButton.backgroundColor = ProjColor.green
         loginButton.backgroundColor = .black
-        testButton.backgroundColor = .black
     }
     
     func buttonInit(button: UIButton, title: String, titleColor: UIColor) {
@@ -76,11 +73,6 @@ class EntryView: UIView {
         
         loginButton.snp.makeConstraints {
             $0.top.equalTo(signUpButton.snp.bottom).offset(30)
-            $0.centerX.equalTo(self.snp.centerX)
-        }
-        
-        testButton.snp.makeConstraints {
-            $0.top.equalTo(loginButton.snp.bottom).offset(30)
             $0.centerX.equalTo(self.snp.centerX)
         }
     }

@@ -7,14 +7,19 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class PlayListTableViewCell: UITableViewCell {
     static let identifier = "playListCell"
     
+    let cellView: UIView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let likeButton = UIButton()
+    let realm = try! Realm()
+    var realmData: RealmData?
     var music: Music?
+    var callBack: (() -> Void)?
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         self.backgroundColor = .clear
@@ -23,8 +28,12 @@ class PlayListTableViewCell: UITableViewCell {
     func initialSetup() {
         guard let music = self.music else { return }
         
-        [titleLabel, nameLabel, likeButton].forEach { contentView.addSubview($0) }
-        self.contentView.backgroundColor = ProjColor.green
+        realmData = RealmData(realm: self.realm)
+        
+        [cellView, titleLabel, nameLabel, likeButton].forEach { contentView.addSubview($0) }
+        cellView.backgroundColor = ProjColor.green
+        cellView.layer.cornerRadius = 10
+        cellView.layer.masksToBounds = true
         
         titleLabel.text = music.title
         titleLabel.font = ProjFont.metro22
@@ -51,37 +60,39 @@ class PlayListTableViewCell: UITableViewCell {
     }
     
     func makeUI() {
+        cellView.snp.makeConstraints {
+            $0.edges.equalTo(contentView.snp.edges).inset(5)
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView.snp.top).offset(10)
-            $0.leading.equalTo(contentView.snp.leading).offset(10)
+            $0.top.equalTo(cellView.snp.top).inset(10)
+            $0.leading.equalTo(cellView.snp.leading).inset(10)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
-            $0.leading.equalTo(contentView.snp.leading).offset(10)
+            $0.leading.equalTo(cellView.snp.leading).inset(10)
         }
         
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(contentView.snp.top).offset(10)
-            $0.trailing.equalTo(contentView.snp.trailing).offset(-10)
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
+            $0.top.equalTo(cellView.snp.top).inset(10)
+            $0.trailing.equalTo(cellView.snp.trailing).inset(10)
+            $0.bottom.equalTo(cellView.snp.bottom).inset(10)
         }
     }
     
     @objc func likeButtonClicked() {
         guard let music = self.music else { return }
+        guard let realmData = self.realmData else { return }
+        guard let callBack = self.callBack else { return }
         
-        music.toggleIsLike()
-        
+        realmData.toggleisLike(music: music, isLike: !music.isLike)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
         let likeImage = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
         let unlikeImage = UIImage(systemName: "heart", withConfiguration: imageConfig)
         likeButton.tintColor = .white
 
-        if music.isLike {
-            likeButton.setImage(likeImage, for: .normal)
-        } else {
-            likeButton.setImage(unlikeImage, for: .normal)
-        }
+        likeButton.setImage(music.isLike ? likeImage : unlikeImage, for: .normal)
+        callBack()
     }
 }
