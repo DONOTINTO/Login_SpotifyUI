@@ -103,7 +103,8 @@ class LoginViewController: UIViewController {
         guard let register = register else { return }
         
         if isAvailableLogin(id: id, password: passwordData) {
-            self.loginData?.loginUpdate(item: register, loginStatus: true)
+            guard let loginData = self.loginData else { return }
+            loginData.loginUpdate(item: register, loginStatus: true)
             let navigationVC = UINavigationController(rootViewController: homeVC)
             self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
             self.view.window?.rootViewController = navigationVC

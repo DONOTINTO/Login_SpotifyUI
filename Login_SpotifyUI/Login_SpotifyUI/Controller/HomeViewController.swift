@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     var register: Register?
     var realmData: RealmData?
     var loginData: LoginData?
-    var heightForRow: CGFloat?
+    var rowHeight: CGFloat = 0
     var filteredData: List<Music>?
     
     override func viewDidLoad() {
@@ -53,13 +53,12 @@ class HomeViewController: UIViewController {
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
         let nameHeight: CGFloat = ProjFont.metro15.lineHeight
-        heightForRow = titleHeight + nameHeight + (spacing * 3)
+        rowHeight = titleHeight + nameHeight + (spacing * 3)
         
-        guard let heightForRow = self.heightForRow else { return }
         guard let register = self.register else { return }
         filteredData = register.playList
         
-        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
     }
     
@@ -86,13 +85,12 @@ class HomeViewController: UIViewController {
     
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
-        guard let heightForRow = self.heightForRow else { return }
         let randomCount = Int.random(in: 1...1000)
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         filteredData = register.playList
-        homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+        homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
     }
@@ -122,8 +120,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let heightForRow = self.heightForRow else { return 0 }
-        return heightForRow
+        return rowHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,13 +130,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let register = self.register else { return }
-        guard let heightForRow = self.heightForRow else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
             self.filteredData = register.playList
-            homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
+            homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
         }
