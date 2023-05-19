@@ -16,6 +16,10 @@ class EntryViewController: UIViewController {
         
         initialSetup()
         makeUI()
+        
+        #if DEBUG
+        
+        #endif
     }
     
     func initialSetup() {
