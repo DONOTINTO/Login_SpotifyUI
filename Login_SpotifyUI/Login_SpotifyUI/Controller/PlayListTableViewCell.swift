@@ -12,23 +12,16 @@ import RealmSwift
 class PlayListTableViewCell: UITableViewCell {
     static let identifier = "playListCell"
     
-    let cellView: UIView = {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            return view
-    }()
+    let cellView: UIView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let likeButton = UIButton()
     let realm = try! Realm()
     var realmData: RealmData?
     var music: Music?
-    var cb: (() -> ())?
+    var callBack: (() -> Void)?
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        self.backgroundColor = .clear
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         self.backgroundColor = .clear
     }
     
@@ -91,7 +84,7 @@ class PlayListTableViewCell: UITableViewCell {
     @objc func likeButtonClicked() {
         guard let music = self.music else { return }
         guard let realmData = self.realmData else { return }
-        guard let cb = self.cb else { return }
+        guard let callBack = self.callBack else { return }
         
         realmData.toggleisLike(music: music, isLike: !music.isLike)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light)
@@ -100,6 +93,6 @@ class PlayListTableViewCell: UITableViewCell {
         likeButton.tintColor = .white
 
         likeButton.setImage(music.isLike ? likeImage : unlikeImage, for: .normal)
-        cb()
+        callBack()
     }
 }
