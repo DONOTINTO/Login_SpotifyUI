@@ -34,6 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let rootVC = rootVC as? HomeViewController {
             rootVC.register = register!
             let navigationVC = UINavigationController(rootViewController: rootVC)
+            navigationVC.navigationBar.backgroundColor = .black
+            
             window?.rootViewController = navigationVC
         } else {
             let navigationVC = UINavigationController(rootViewController: rootVC)

@@ -13,9 +13,11 @@ class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
     let realm = try! Realm()
+    let searchController = UISearchController(searchResultsController: nil)
     var register: Register?
     var realmData: RealmData?
     var loginData: LoginData?
+    var filteredData: [Music] = []
     var rowHeight: CGFloat = 0
     
     override func viewDidLoad() {
@@ -40,12 +42,21 @@ class HomeViewController: UIViewController {
         realmData = RealmData(realm: realm)
         loginData = LoginData(realm: realm)
         
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.tintColor = ProjColor.green
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "검색어를 입력하세요.", attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.5)])
+        searchController.searchBar.searchTextField.backgroundColor = ProjColor.lightGray
+        
+        navigationItem.searchController = searchController
+        
         let spacing: CGFloat = 10
         let titleHeight: CGFloat = ProjFont.metro22.lineHeight
         let nameHeight: CGFloat = ProjFont.metro15.lineHeight
         rowHeight = titleHeight + nameHeight + (spacing * 3)
         
         guard let register = self.register else { return }
+        filteredData = register.getPlayListArray()
         
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
@@ -78,6 +89,7 @@ class HomeViewController: UIViewController {
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
+        filteredData = Array(register.playList)
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
@@ -112,8 +124,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let register = self.register else { return 0 }
-        return register.playList.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -122,6 +133,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
+            self.filteredData = register.getPlayListArray()
             homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
@@ -132,7 +144,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
         if let register = self.register {
-            let music = register.playList[indexPath.row]
+            let music = filteredData[indexPath.row]
             cell.music = music
         }
         
@@ -147,6 +159,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.callBack = callBack
         return cell
     }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        guard let register = self.register else { return }
+        
+        if searchText.isEmpty {
+            filteredData = register.getPlayListArray()
+        } else {
+            let filtered = register.playList.where {
+                $0.title.contains(searchText)
+            }
+            filteredData = Array(filtered)
+        }
+        
+        homeScrollView.playListTableView.reloadData()
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
 }
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
