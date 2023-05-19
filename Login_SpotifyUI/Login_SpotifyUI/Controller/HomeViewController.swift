@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     var realmData: RealmData?
     var loginData: LoginData?
     var rowHeight: CGFloat = 0
-    var filteredData: List<Music>?
+    var filteredData = List<Music>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,7 +124,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let filteredData = self.filteredData else { return 0 }
         return filteredData.count
     }
     
@@ -169,7 +168,7 @@ extension HomeViewController: UISearchResultsUpdating {
         if searchText.isEmpty {
             filteredData = register.playList
         } else {
-            filteredData = nil
+            filteredData = List<Music>()
         }
         
         homeScrollView.playListTableView.reloadData()
