@@ -16,6 +16,10 @@ class Register: Object {
     @Persisted var isLogin: Bool = false
     @Persisted var playList = List<Music>()
     
+    func getPlayListArray() -> [Music] {
+        return Array(playList)
+    }
+    
     convenience init(identification: String, nickname: String, password: String, phone: String) {
         self.init()
         self.identification = identification

@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     var realmData: RealmData?
     var loginData: LoginData?
     var heightForRow: CGFloat?
-    var filteredData: List<Music>?
+    var filteredData: [Music] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
         
         guard let heightForRow = self.heightForRow else { return }
         guard let register = self.register else { return }
-        filteredData = register.playList
+        filteredData = register.getPlayListArray()
         
         homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
-        filteredData = register.playList
+        filteredData = Array(register.playList)
         homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
@@ -127,7 +127,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let filteredData = self.filteredData else { return 0 }
         return filteredData.count
     }
     
@@ -138,7 +137,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
             realmData.removePlayList(identifier: register.identification, index: indexPath.row)
-            self.filteredData = register.playList
+            self.filteredData = register.getPlayListArray()
             homeScrollView.updateUI(height: Int(heightForRow) * register.playList.count)
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
@@ -149,7 +148,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
         if let register = self.register {
-            let music = register.playList[indexPath.row]
+            let music = filteredData[indexPath.row]
             cell.music = music
         }
         
@@ -171,9 +170,12 @@ extension HomeViewController: UISearchResultsUpdating {
         guard let register = self.register else { return }
         
         if searchText.isEmpty {
-            filteredData = register.playList
+            filteredData = register.getPlayListArray()
         } else {
-            filteredData = nil
+            let filtered = register.playList.where {
+                $0.title.contains(searchText)
+            }
+            filteredData = Array(filtered)
         }
         
         homeScrollView.playListTableView.reloadData()
