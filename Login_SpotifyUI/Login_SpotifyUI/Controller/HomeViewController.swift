@@ -12,7 +12,7 @@ import RealmSwift
 class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
-    let realm = try! Realm()
+    var realm: Realm?
     let searchController = UISearchController(searchResultsController: nil)
     var register: Register?
     var realmData: RealmData?
@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     }
     
     func initialSetup() {
+        guard let realm = realm else { return }
         view.addSubview(homeScrollView)
         homeScrollView.playListTableView.register(PlayListTableViewCell.self, forCellReuseIdentifier: PlayListTableViewCell.identifier)
         homeScrollView.playListTableView.delegate = self
@@ -85,9 +86,11 @@ class HomeViewController: UIViewController {
     
     @objc func addPlayListButtonClicked() {
         guard let register = self.register else { return }
+        guard let realm = self.realm else { return }
         let randomCount = Int.random(in: 1...1000)
         let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
+        
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         filteredData = register.playList
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
@@ -129,6 +132,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let register = self.register else { return }
+        guard let realm = self.realm else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)

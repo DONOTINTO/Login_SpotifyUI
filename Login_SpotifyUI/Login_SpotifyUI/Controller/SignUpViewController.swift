@@ -26,7 +26,7 @@ enum ErrorType: String {
 
 class SignUpViewController: UIViewController {
     let signUpView = SignUpView()
-    let realm = try! Realm()
+    var realm: Realm?
     var realmData: RealmData?
     var registerList: [Register]?
     var errorType: ErrorType = .emptyIdentifier
@@ -43,6 +43,8 @@ class SignUpViewController: UIViewController {
     }
     
     func initialSetup() {
+        guard let realm = self.realm else { return }
+        
         self.view.addSubview(signUpView)
         [signUpView.identificationTextField, signUpView.nicknameTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)        
