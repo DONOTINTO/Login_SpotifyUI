@@ -92,6 +92,7 @@ class LoginViewController: UIViewController {
         guard let id = loginView.identificationTextField.text else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
+        homeVC.realm = self.realm
         var register: Register?
         homeVC.modalPresentationStyle = .fullScreen
         
