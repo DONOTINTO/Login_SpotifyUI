@@ -32,6 +32,10 @@ class RealmData: RealmDataProtocol {
     
     func delete(_ data: Register) {
         try! realm.write {
+            let playList = data.playList
+            playList.forEach { music in
+                realm.delete(music)
+            }
             realm.delete(data)
         }
     }
@@ -43,10 +47,11 @@ class RealmData: RealmDataProtocol {
         }
     }
     
-    func removePlayList(identifier: String, index: Int) {
+    func removePlayList(identifier: String, music: Music, index: Int) {
         try! realm.write {
             guard let object = realm.object(ofType: Register.self, forPrimaryKey: identifier) else { return }
             object.playList.remove(at: index)
+            realm.delete(music)
         }
     }
     

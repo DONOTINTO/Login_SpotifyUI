@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
         guard let register = self.register else { return }
         guard let realm = self.realm else { return }
         let randomCount = Int.random(in: 1...1000)
-        let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
+        let newMusic = Music(identification: register.identification, title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
         
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
@@ -104,6 +104,7 @@ class HomeViewController: UIViewController {
         loginData.loginUpdate(item: register, loginStatus: false)
         
         let entryVC = EntryViewController()
+        entryVC.realm = self.realm
         let navigationVC = UINavigationController(rootViewController: entryVC)
         self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
         self.view.window?.rootViewController = navigationVC
@@ -115,6 +116,7 @@ class HomeViewController: UIViewController {
         realmData.delete(register)
         
         let entryVC = EntryViewController()
+        entryVC.realm = self.realm
         let navigationVC = UINavigationController(rootViewController: entryVC)
         self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
         self.view.window?.rootViewController = navigationVC
@@ -136,7 +138,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
-            realmData.removePlayList(identifier: register.identification, index: indexPath.row)
+            let music = register.playList[indexPath.row]
+            realmData.removePlayList(identifier: register.identification, music: music , index: indexPath.row)
             self.filteredData = register.playList
             homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
