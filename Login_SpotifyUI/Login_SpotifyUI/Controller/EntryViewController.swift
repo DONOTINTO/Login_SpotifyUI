@@ -41,11 +41,8 @@ class EntryViewController: UIViewController {
     
     @objc func signUpButtonClicked(sender: UIButton) {
         animateView(viewToAnimate: sender)
-        let signUpVC: SignUpViewController = {
-            let vc = SignUpViewController()
-            vc.realm = self.realm
-            return vc
-        }()
+        let signUpVC: SignUpViewController = SignUpViewController()
+        signUpVC.realm = self.realm
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
