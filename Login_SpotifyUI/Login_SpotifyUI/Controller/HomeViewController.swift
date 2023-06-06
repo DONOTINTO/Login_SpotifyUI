@@ -85,8 +85,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addPlayListButtonClicked() {
-        guard let register = self.register else { return }
         guard let realm = self.realm else { return }
+        guard let register = self.register else { return }
         let randomCount = Int.random(in: 1...1000)
         let newMusic = Music(identification: register.identification, title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
@@ -134,8 +134,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let register = self.register else { return }
         guard let realm = self.realm else { return }
+        guard let register = self.register else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
