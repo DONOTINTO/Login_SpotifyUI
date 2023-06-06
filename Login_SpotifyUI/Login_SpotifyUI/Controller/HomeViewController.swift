@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
         rowHeight = titleHeight + nameHeight + (spacing * 3)
         
         guard let register = self.register else { return }
-        filteredData = register.playList
+        filteredData = register.getPlayListArray()
         
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
@@ -93,6 +93,7 @@ class HomeViewController: UIViewController {
         
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
         filteredData = register.playList
+
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
@@ -151,18 +152,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayListTableViewCell.identifier, for: indexPath) as? PlayListTableViewCell else { return UITableViewCell() }
         
         if let register = self.register {
-            let music = register.playList[indexPath.row]
+            let music = filteredData[indexPath.row]
             cell.music = music
         }
         
-        let cb: () -> () = {
+        let callBack: () -> Void = {
             self.updateProfileView()
         }
         
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         cell.initialSetup()
         cell.makeUI()
-        cell.cb = cb
+        cell.callBack = callBack
         return cell
     }
 }
@@ -173,7 +175,7 @@ extension HomeViewController: UISearchResultsUpdating {
         guard let register = self.register else { return }
         
         if searchText.isEmpty {
-            filteredData = register.playList
+            filteredData = register.getPlayListArray()
         } else {
             filteredData = List<Music>()
         }

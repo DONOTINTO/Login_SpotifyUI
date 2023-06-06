@@ -20,8 +20,10 @@ class EntryViewController: UIViewController {
         makeUI()
         
         #if DEBUG
+      
         entryView.testInitialSetup()
         entryView.testMakeUI()
+
         #endif
     }
     
