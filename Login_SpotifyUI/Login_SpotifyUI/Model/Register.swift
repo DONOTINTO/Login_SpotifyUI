@@ -16,7 +16,7 @@ class Register: Object {
     @Persisted var isLogin: Bool = false
     @Persisted var playList = List<Music>()
     
-    func getPlayListArray() -> [Music] {
+    func getPlayList() -> [Music] {
         return Array(playList)
     }
     
