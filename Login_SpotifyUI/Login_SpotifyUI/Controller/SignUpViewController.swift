@@ -9,11 +9,27 @@ import UIKit
 import SnapKit
 import RealmSwift
 
+enum ErrorType: String {
+    case emptyIdentifier = "아이디를 입력해주세요."
+    case duplicateIdentifier = "중복된 아이디입니다."
+    case emptyNickname = "닉네임을 입력해주세요."
+    case duplicateNickname = "중복된 닉네임입니다."
+    case emptyPassword = "비밀번호를 입력해주세요."
+    case emptyCheckPassword = "비밀번호를 재입력해주세요."
+    case incorrectPassword = "입력한 비밀번호가 일치하지 않습니다."
+    case missSpecialKeyword = "특수기호가 포함되어야 합니다."
+    case missLetterCase = "대소문자가 포함되어야 합니다."
+    case emptyPhonenumber = "전화번호를 입력해주세요."
+    case duplicatePhonenumber = "이미 가입된 번호입니다."
+    case notIntType = "숫자만 입력해주세요."
+}
+
 class SignUpViewController: UIViewController {
     let signUpView = SignUpView()
-    let realm = try! Realm()
+    var realm: Realm?
     var realmData: RealmData?
     var registerList: [Register]?
+    var errorType: ErrorType = .emptyIdentifier
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +43,8 @@ class SignUpViewController: UIViewController {
     }
     
     func initialSetup() {
+        guard let realm = self.realm else { return }
+        
         self.view.addSubview(signUpView)
         [signUpView.identificationTextField, signUpView.nicknameTextField, signUpView.passwordTextField, signUpView.passwordCheckTextField, signUpView.phoneTextField].forEach { $0.delegate = self }
         signUpView.signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)        
@@ -53,10 +71,12 @@ class SignUpViewController: UIViewController {
         let duplicationID = registerList.filter { $0.identification == id }
         
         if id.isEmpty {
-            signUpView.identificationTextField.placeholder = "아이디를 입력해주세요."
+            errorType = .emptyIdentifier
+            signUpView.identificationTextField.placeholder = errorType.rawValue
             return false
         } else if !duplicationID.isEmpty {
-            signUpView.identificationTextField.placeholder = "중복된 아이디입니다."
+            errorType = .duplicateIdentifier
+            signUpView.identificationTextField.placeholder = errorType.rawValue
         } else {
             signUpView.identificationTextField.placeholder = ""
         }
@@ -69,41 +89,48 @@ class SignUpViewController: UIViewController {
         let isNicknameExist = registerList.contains { $0.nickname == nickname }
         
         if nickname.isEmpty {
-            signUpView.nicknameTextField.placeholder = "닉네임을 입력해주세요."
+            errorType = .emptyNickname
+            signUpView.nicknameTextField.placeholder = errorType.rawValue
             return false
         } else if isNicknameExist {
-            signUpView.identificationTextField.placeholder = "중복된 닉네임입니다."
+            errorType = .duplicateNickname
+            signUpView.nicknameTextField.placeholder = errorType.rawValue
         } else {
-            signUpView.identificationTextField.placeholder = ""
+            signUpView.nicknameTextField.placeholder = ""
         }
         
         return !isNicknameExist
     }
     
-    func isAvailablePassword(_ password: String, _ passwordCheck: String) -> Bool {
+    func isCorrectPassword(_ password: String, _ passwordCheck: String) -> Bool {
         /// 특수문자 캐릭터셋
         let punctuationCharacterSet = CharacterSet.punctuationCharacters
         let upperChar = password.filter { $0.isUppercase }
         let lowerChar = password.filter { $0.isLowercase}
         
         if password.isEmpty {
-            signUpView.passwordTextField.placeholder = "비밀번호를 입력해주세요."
+            errorType = .emptyPassword
+            signUpView.passwordTextField.placeholder = errorType.rawValue
             signUpView.passwordCheckTextField.placeholder = ""
             return false
         } else if passwordCheck.isEmpty {
+            errorType = .emptyCheckPassword
             signUpView.passwordTextField.placeholder = ""
-            signUpView.passwordCheckTextField.placeholder = "비밀번호를 재입력해주세요."
+            signUpView.passwordCheckTextField.placeholder = errorType.rawValue
             return false
         } else if password != passwordCheck {
-            signUpView.passwordTextField.placeholder = "입력한 비밀번호가 일치하지 않습니다."
+            errorType = .incorrectPassword
+            signUpView.passwordTextField.placeholder = errorType.rawValue
             signUpView.passwordCheckTextField.placeholder = ""
             return false
         } else if password.rangeOfCharacter(from: punctuationCharacterSet) == nil {
-            signUpView.passwordTextField.placeholder = "특수문자가 포함되어야 합니다."
+            errorType = .missSpecialKeyword
+            signUpView.passwordTextField.placeholder = errorType.rawValue
             signUpView.passwordCheckTextField.placeholder = ""
             return false
         } else if upperChar.isEmpty || lowerChar.isEmpty {
-            signUpView.passwordTextField.placeholder = "대소문자가 포함되어야 합니다."
+            errorType = .missLetterCase
+            signUpView.passwordTextField.placeholder = errorType.rawValue
             signUpView.passwordCheckTextField.placeholder = ""
             return false
         }
@@ -118,15 +145,18 @@ class SignUpViewController: UIViewController {
         let duplicationPhone = registerList.filter { $0.phone == phone }
         
         if phone.isEmpty {
-            signUpView.phoneTextField.placeholder = "전화번호를 입력해주세요."
+            errorType = .emptyPhonenumber
+            signUpView.phoneTextField.placeholder = errorType.rawValue
             return false
         } else if !duplicationPhone.isEmpty {
-            signUpView.phoneTextField.placeholder = "이미 가입된 번호입니다."
+            errorType = .duplicatePhonenumber
+            signUpView.phoneTextField.placeholder = errorType.rawValue
             return false
         }
         
         if Int(phone) == nil {
-            signUpView.phoneTextField.placeholder = "숫자만 입력해주세요."
+            errorType = .notIntType
+            signUpView.phoneTextField.placeholder = errorType.rawValue
             return false
         }
         return true
@@ -149,7 +179,7 @@ class SignUpViewController: UIViewController {
         
         if !isAvailableID(identification) { return }
         if !isAvailableNickName(nickName) { return }
-        if !isAvailablePassword(password, passwordCheck) { return }
+        if !isCorrectPassword(password, passwordCheck) { return }
         if !isAvailablePhone(phone) { return }
         if identification.isEmpty || nickName.isEmpty || password.isEmpty || phone.isEmpty { return }
         

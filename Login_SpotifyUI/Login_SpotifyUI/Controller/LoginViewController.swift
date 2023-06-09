@@ -16,7 +16,7 @@ enum HidePasswordState {
 
 class LoginViewController: UIViewController {
     let loginView = LoginView()
-    let realm = try! Realm()
+    var realm: Realm?
     var passwordData: String = ""
     var hidePasswordData: String = ""
     var passwordState = HidePasswordState.hide
@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
     }
     
     func initialSetup() {
+        guard let realm = self.realm else { return }
+        
         self.view.addSubview(loginView)
         loginView.passwordTextField.delegate = self
         loginView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
@@ -42,8 +44,8 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        realmData = RealmData(realm: self.realm)
-        loginData = LoginData(realm: self.realm)
+        realmData = RealmData(realm: realm)
+        loginData = LoginData(realm: realm)
         if let realmData = self.realmData {
             registerList = realmData.fetch()
         }
@@ -90,6 +92,7 @@ class LoginViewController: UIViewController {
         guard let id = loginView.identificationTextField.text else { return }
         guard let registerList = registerList else { return }
         let homeVC = HomeViewController()
+        homeVC.realm = self.realm
         var register: Register?
         homeVC.modalPresentationStyle = .fullScreen
         
@@ -103,7 +106,8 @@ class LoginViewController: UIViewController {
         guard let register = register else { return }
         
         if isAvailableLogin(id: id, password: passwordData) {
-            self.loginData?.loginUpdate(item: register, loginStatus: true)
+            guard let loginData = self.loginData else { return }
+            loginData.loginUpdate(item: register, loginStatus: true)
             let navigationVC = UINavigationController(rootViewController: homeVC)
             self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
             self.view.window?.rootViewController = navigationVC

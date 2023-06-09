@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class EntryViewController: UIViewController {
     let entryView = EntryView()
+    var realm: Realm?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,10 @@ class EntryViewController: UIViewController {
         makeUI()
         
         #if DEBUG
-        
+      
+        entryView.testInitialSetup()
+        entryView.testMakeUI()
+
         #endif
     }
     
@@ -36,16 +41,25 @@ class EntryViewController: UIViewController {
     
     @objc func signUpButtonClicked(sender: UIButton) {
         animateView(viewToAnimate: sender)
-        navigationController?.pushViewController(SignUpViewController(), animated: true)
+        let signUpVC: SignUpViewController = SignUpViewController()
+        signUpVC.realm = self.realm
+        navigationController?.pushViewController(signUpVC, animated: true)
     }
     
     @objc func loginButtonClicked(sender: UIButton) {
         animateView(viewToAnimate: sender)
-        navigationController?.pushViewController(LoginViewController(), animated: true)
+        let loginVC: LoginViewController = {
+            let vc = LoginViewController()
+            vc.realm = self.realm
+            return vc
+        }()
+        navigationController?.pushViewController(loginVC, animated: true)
     }
     
     @objc func testButtonClicked(sender: UIButton) {
+        guard let realm = realm else { return }
         let testVC = HomeViewController()
+        testVC.realm = realm
         testVC.modalPresentationStyle = .fullScreen
         present(testVC, animated: true)
     }

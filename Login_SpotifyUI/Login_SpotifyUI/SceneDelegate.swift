@@ -33,11 +33,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootVC = isLoginNow ? HomeViewController() : EntryViewController()
         if let rootVC = rootVC as? HomeViewController {
             rootVC.register = register!
+            rootVC.realm = self.realm
             let navigationVC = UINavigationController(rootViewController: rootVC)
             navigationVC.navigationBar.backgroundColor = .black
             
             window?.rootViewController = navigationVC
         } else {
+            guard let rootVC = rootVC as? EntryViewController else { return }
+            rootVC.realm = self.realm
             let navigationVC = UINavigationController(rootViewController: rootVC)
             window?.rootViewController = navigationVC
         }

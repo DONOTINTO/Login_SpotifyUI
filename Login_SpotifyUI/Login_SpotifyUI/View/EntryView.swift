@@ -13,6 +13,7 @@ class EntryView: UIView {
     let introLabel = UILabel()
     let signUpButton = UIButton()
     let loginButton = UIButton()
+    let testButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +74,19 @@ class EntryView: UIView {
         
         loginButton.snp.makeConstraints {
             $0.top.equalTo(signUpButton.snp.bottom).offset(30)
+            $0.centerX.equalTo(self.snp.centerX)
+        }
+    }
+    
+    func testInitialSetup() {
+        self.addSubview(testButton)
+        buttonInit(button: testButton, title: "DEBUG TEST", titleColor: .white)
+        testButton.backgroundColor = .black
+    }
+    
+    func testMakeUI() {
+        testButton.snp.makeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(30)
             $0.centerX.equalTo(self.snp.centerX)
         }
     }

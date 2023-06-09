@@ -12,13 +12,13 @@ import RealmSwift
 class HomeViewController: UIViewController {
     let homeScrollView = HomeScrollView()
     let imagePickerController = UIImagePickerController()
-    let realm = try! Realm()
+    var realm: Realm?
     let searchController = UISearchController(searchResultsController: nil)
     var register: Register?
     var realmData: RealmData?
     var loginData: LoginData?
-    var filteredData: [Music] = []
     var rowHeight: CGFloat = 0
+    var filteredData: [Music] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     }
     
     func initialSetup() {
+        guard let realm = realm else { return }
         view.addSubview(homeScrollView)
         homeScrollView.playListTableView.register(PlayListTableViewCell.self, forCellReuseIdentifier: PlayListTableViewCell.identifier)
         homeScrollView.playListTableView.delegate = self
@@ -56,7 +57,7 @@ class HomeViewController: UIViewController {
         rowHeight = titleHeight + nameHeight + (spacing * 3)
         
         guard let register = self.register else { return }
-        filteredData = register.getPlayListArray()
+        filteredData = register.getPlayList()
         
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
@@ -84,12 +85,15 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addPlayListButtonClicked() {
+        guard let realm = self.realm else { return }
         guard let register = self.register else { return }
         let randomCount = Int.random(in: 1...1000)
-        let newMusic = Music(title: "\(randomCount)", artist: "test-artist")
+        let newMusic = Music(identification: register.identification, title: "\(randomCount)", artist: "test-artist")
         let realmData = RealmData(realm: realm)
+        
         realmData.addPlayList(identifier: register.identification, newMusic: newMusic)
-        filteredData = Array(register.playList)
+        filteredData = register.getPlayList()
+
         homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
         updateProfileView()
         homeScrollView.playListTableView.reloadData()
@@ -101,6 +105,7 @@ class HomeViewController: UIViewController {
         loginData.loginUpdate(item: register, loginStatus: false)
         
         let entryVC = EntryViewController()
+        entryVC.realm = self.realm
         let navigationVC = UINavigationController(rootViewController: entryVC)
         self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
         self.view.window?.rootViewController = navigationVC
@@ -112,6 +117,7 @@ class HomeViewController: UIViewController {
         realmData.delete(register)
         
         let entryVC = EntryViewController()
+        entryVC.realm = self.realm
         let navigationVC = UINavigationController(rootViewController: entryVC)
         self.presentedViewController?.navigationController?.popToRootViewController(animated: true)
         self.view.window?.rootViewController = navigationVC
@@ -128,12 +134,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let realm = self.realm else { return }
         guard let register = self.register else { return }
         
         if editingStyle == .delete {
             let realmData = RealmData(realm: realm)
-            realmData.removePlayList(identifier: register.identification, index: indexPath.row)
-            self.filteredData = register.getPlayListArray()
+            let music = register.playList[indexPath.row]
+            realmData.removePlayList(identifier: register.identification, music: music , index: indexPath.row)
+            self.filteredData = register.getPlayList()
             homeScrollView.updateUI(height: rowHeight * CGFloat(register.playList.count))
             updateProfileView()
             homeScrollView.playListTableView.reloadData()
@@ -167,12 +175,9 @@ extension HomeViewController: UISearchResultsUpdating {
         guard let register = self.register else { return }
         
         if searchText.isEmpty {
-            filteredData = register.getPlayListArray()
+            filteredData = register.getPlayList()
         } else {
-            let filtered = register.playList.where {
-                $0.title.contains(searchText)
-            }
-            filteredData = Array(filtered)
+            filteredData = [Music]()
         }
         
         homeScrollView.playListTableView.reloadData()
